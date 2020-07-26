@@ -1,0 +1,60 @@
+.home{
+    background: #4b79a1; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4b79a1, #283e51); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4b79a1, #283e51);
+    font-family: 'IBM Plex Serif', serif;
+}
+.home-col-1{
+    margin-left: 4vw;
+}
+.home-h4{
+    margin-top: 7vh;
+    font-size: 50px;
+    color: lavender;
+}
+.home-col-2{
+    margin-top: 7vh;
+    font-family: 'IBM Plex Serif', serif;
+}
+.home-h5{
+    color: #110f4e;
+}
+.home-col-2-icon{
+    color: #110f4e;
+
+}
+.home-col-2-icon:hover{
+    display: inline-block;
+    margin: 0 0.5rem;
+    animation: bounce; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s; /* don't forget to set a duration! */
+
+}
+@media (max-width: 320px){
+    .home-h4{
+        margin-top: 4vh;
+        font-size: 15px;
+        color: lavender;
+    }
+}
+@media (min-width: 321px) and (max-width: 767px){
+    .home-h4{
+        margin-top: 4vh;
+        font-size: 25px;
+        color: lavender;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .home-h4{
+        margin-top: 4vh;
+        font-size: 28px;
+        color: lavender;
+    }
+}
+@media (min-width: 1024px) and (max-width: 1339px) {
+    .home-h4{
+        margin-top: 4vh;
+        font-size: 40px;
+        color: lavender;
+    }
+}

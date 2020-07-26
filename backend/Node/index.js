@@ -5,6 +5,8 @@ let cors = require('cors')
 let bodyparser = require('body-parser')
 let cookieParser = require('cookie-parser')
 let dbConfig = require('./database/database')
+const dotenv = require("dotenv");
+dotenv.config();
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db,{
@@ -23,8 +25,8 @@ app.use(bodyparser.json())
 app.use(cookieParser())
 
 //define the users routing
-app.use('/api/users/', require('./routes/users'))
-
+// app.use('/api/users/', require('./routes/users'))
+app.use('/api/auth/',require('./routes/auth'))
 const port = process.env.PORT || 5000;
 const server = app.listen(port,()=>{
     console.log("app run in port "+port)

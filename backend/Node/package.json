@@ -17,14 +17,23 @@
   },
   "homepage": "https://github.com/chamikarajayasekara/MyPathApp#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "del": "^5.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.27.0",
     "mongoose": "^5.9.25",
-    "nodemon": "^2.0.4"
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "path": "^0.12.7"
   }
 }

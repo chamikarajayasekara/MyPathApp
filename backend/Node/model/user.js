@@ -25,12 +25,6 @@ const userSchema = mongoose.Schema({
         type:Number,
         default:0
     },
-    token:{
-        type:String,
-    },
-    tokenExp:{
-        type: Number
-    },
     createdAt: {
         type:Date,
         default: Date.now()
@@ -67,10 +61,13 @@ userSchema.methods.generateToken = function(cb) {
     let user = this;
     console.log('user',user)
     console.log('userSchema', userSchema)
-    let token =  jwt.sign(user._id.toHexString(),'secret')
-    let oneHour = moment().add(1, 'hour').valueOf();
-
-    user.tokenExp = oneHour;
+    // let token =  jwt.sign(user._id.toHexString(),'secret')
+    const token = jwt.sign(
+        { _id: user._id, email: user.email, name: user.name },
+        process.env.TOKEN_SECRET);
+    // let oneHour = moment().add(1, 'hour').valueOf();
+    //
+    // user.tokenExp = oneHour;
     user.token = token;
     user.save(function (err, user){
         if(err) return cb(err)
@@ -88,5 +85,11 @@ userSchema.statics.findByToken = function (token,cb) {
     })
 }
 
+// module.exports.checkPassword = function (reqPass, pass) {
+//     return bcrypt.compare(reqPass,pass)
+// };
+
 const User = mongoose.model('User',userSchema);
 module.exports = {User}
+
+
