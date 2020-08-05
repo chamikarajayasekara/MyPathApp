@@ -1,29 +1,36 @@
 
 import React, {Component} from 'react';
-import axios from 'axios';
-import {getJwt} from "../jwt/jwt";
-import PersonList from "./test";
+import SideMenu from "../AdminPanel/SideMenu/SideMenu";
+import AdminNav from "../AdminPanel/AdminNav/AdminNav";
+import './profile.css';
+import Dashboard from "../AdminPanel/Dashboard/Dashboard";
+import CourseAdd from "../AdminPanel/CourseAdd/CourseAdd";
+import {Link, Route} from "react-router-dom";
+import CourseList from "../AdminPanel/CourseList/CourseList";
+import PersonalDetails from "../AdminPanel/PersonalDetails/PersonalDetails";
+import CourseDetails from "../AdminPanel/CourseList/CourseDetails";
+
 
 class Profile extends Component {
-    constructor() {
-        super();
-    }
-    logout = () =>{
-        const token =  localStorage.getItem('cool-jwt');
-        axios.get(`http://localhost:5000/api/auth/logout`,{ headers: {"auth-token": token} })
-            .then(res => {
-                console.log(res.data);
-                localStorage.clear("userName");
-                localStorage.clear("tokenNumber");
-                window.location.replace("/login");
-            })
-    }
         render() {
                 return (
-                    <div>
-                        <button type="submit" onClick={this.logout}>LogOut</button>
-                        <PersonList/>
+                    <div className="Admin-panel">
+                        <AdminNav/>
+                        <div className="row sidebar-dashboard">
+                            <div className="col-lg-3 sidemenu-tab">
+                                <SideMenu/>
+                            </div>
+                            <div className="col-lg-9">
+                                <Route exact path="/dashboard" component={Dashboard}/>
+                                <Route path="/CourseAdd" component={CourseAdd}/>
+                                <Route path="/CourseList" component={CourseList}/>
+                                <Route path="/PersonalDetails" component={PersonalDetails}/>
+                                <Route path="/CourseDetails/:id" component={CourseDetails}/>
+                            </div>
+                        </div>
+
                     </div>
+
                 );
             }
     }

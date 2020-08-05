@@ -1,0 +1,63 @@
+.login-form{
+    /*margin-top: 4vh;*/
+}
+.form-inputs{
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+}
+.form-logo{
+    width: 18vw;
+}
+.login{
+    background-color: #283e51;
+    width: 10vw;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    color: lavender;
+    font-family: 'IBM Plex Serif', serif;
+}
+.login:hover {
+    border: 2px solid lavender;
+}
+
+@media (max-width: 320px){
+   .login{
+        width: auto;
+   }
+    .login-form{
+        margin-top: 1vh;
+    }
+    .form-logo{
+        width: 35vw;
+    }
+}
+@media (min-width: 321px) and (max-width: 767px){
+    .login{
+        width: auto;
+    }
+    .login-form{
+        margin-top: 1vh;
+    }
+    .form-logo{
+        width: 35vw;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .login{
+        width: auto;
+    }
+    .login-form{
+        margin-top: 2vh;
+        width: 100%;
+    }
+    .form-inputs{
+        width: 100%;
+    }
+    .form-logo{
+        width: 35vw;
+    }
+}

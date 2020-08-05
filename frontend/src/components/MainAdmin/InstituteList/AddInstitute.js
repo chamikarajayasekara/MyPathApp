@@ -4,9 +4,9 @@ import {Input, notification} from "antd";
 import FileDoneOutlined from "@ant-design/icons/lib/icons/FileDoneOutlined";
 import BankOutlined from "@ant-design/icons/lib/icons/BankOutlined";
 import VerticalAlignTopOutlined from "@ant-design/icons/lib/icons/VerticalAlignTopOutlined";
-import InstituteTable from "./instituteTable";
+import InstituteNav from "./InstituteNav";
 
-class Institutes extends Component {
+class AddInstitute extends Component {
     state={
         id:'',
         name:'',
@@ -47,6 +47,7 @@ class Institutes extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-12">
+                        <InstituteNav/>
                         <h1 className="admin-login-h2">Add Institute</h1>
                     </div>
                 </div>
@@ -68,4 +69,4 @@ class Institutes extends Component {
     }
 }
 
-export default Institutes;
+export default AddInstitute;

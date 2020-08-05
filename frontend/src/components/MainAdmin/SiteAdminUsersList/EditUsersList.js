@@ -1,0 +1,76 @@
+import React, {Component, useEffect, useState} from 'react';
+import axios from "axios";
+import {Input, notification} from "antd";
+import InstituteNav from "../InstituteList/InstituteNav";
+import FileDoneOutlined from "@ant-design/icons/lib/icons/FileDoneOutlined";
+import BankOutlined from "@ant-design/icons/lib/icons/BankOutlined";
+import VerticalAlignTopOutlined from "@ant-design/icons/lib/icons/VerticalAlignTopOutlined";
+
+function EditUsersList (props) {
+    const [user,setUser] = useState({_id:'',name:'',email:''});
+    const url = "http://localhost:5000/api/auth/details/"+props.match.params.id;
+    console.log(url)
+
+    useEffect(()=>{
+        const token =  localStorage.getItem('admin-token');
+        const GetUser = async () =>{
+            const result = await axios.get('http://localhost:5000/api/auth/details/'+props.match.params.id,{ headers: {"auth-token": token}} )
+            setUser(result.data);
+            console.log(result)
+        };
+        GetUser();
+    }, []);
+
+    const UpdateInstitute = (e) => {
+        e.preventDefault();
+        const details = {
+            name: user.name,
+            email : user.email,
+            institute: user.institute,
+            location:user.location
+        };
+        const token =  localStorage.getItem('admin-token');
+        axios.put('http://localhost:5000/api/auth/update/'+props.match.params.id, details,{ headers: {"auth-token": token}})
+            .then((result)=>{
+                props.history.push('/instituteTable');
+                notification.success({
+                    message: 'Institute List Edit',
+                    description: "You're successfully edited data!",
+                })
+            })
+    }
+
+    const onChange = (e) => {
+        e.persist();
+        setUser({...user,[e.target.name]: e.target.value})
+    }
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <InstituteNav/>
+                        <h1 className="admin-login-h2">Edit Users</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                        <form onSubmit={UpdateInstitute} className="login-form">
+                            <Input  className="form-inputs" type="text" name="name" value={user.name} onChange={onChange} size="large" placeholder="name" prefix={<FileDoneOutlined />} required />
+                            <br/>
+                            <Input className="form-inputs" type="text" name="user" value={user.email} onChange={onChange} size="large" placeholder="email" prefix={<BankOutlined />} required />
+                            <br/>
+                            <Input  className="form-inputs" type="text" name="institute" value={user.institute} onChange={onChange} size="large" placeholder="Institute name" prefix={<FileDoneOutlined />} required />
+                            <br/>
+                            <Input className="form-inputs" type="text" name="location" value={user.location} onChange={onChange} size="large" placeholder="location" prefix={<BankOutlined />} required />
+                            <br/>
+                            <button className="login" type="submit"><VerticalAlignTopOutlined />&nbsp;Edit User</button>
+                        </form>
+                    </div>
+                    <div className="col-md-3"></div>
+                </div>
+            </div>
+        );
+}
+
+export default EditUsersList;

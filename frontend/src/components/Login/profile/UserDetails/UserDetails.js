@@ -1,32 +1,24 @@
 import React from 'react';
-
 import axios from 'axios';
+import './UserDetails.css';
 
 export default class PersonList extends React.Component {
     state = {
-        persons:'',
-        email:'',
         name:''
     }
 
     componentDidMount() {
-        const token =  localStorage.getItem('cool-jwt');
-        axios.get(`http://localhost:5000/api/auth`,{ headers: {"auth-token": token} })
-            .then(res => {
-                const persons = res.data;
-                console.log(persons)
-                const email = res.data.email;
-                console.log(email)
-                const name = res.data.name;
-                this.setState({persons})
-                // this.setState({ persons });
-            })
+        const username =  localStorage.getItem('userName');
+
+        this.setState({
+            name:username
+        })
     }
 
     render() {
         return (
             <ul>
-                <p>Welcome&nbsp;{this.state.persons.name}</p>
+                <p>Welcome&nbsp;{this.state.name}</p>
 
                 {/*{this.state.persons.email}*/}
             </ul>

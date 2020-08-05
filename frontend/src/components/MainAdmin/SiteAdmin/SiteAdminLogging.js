@@ -5,6 +5,7 @@ import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import KeyOutlined from "@ant-design/icons/lib/icons/KeyOutlined";
 import LoginOutlined from "@ant-design/icons/lib/icons/LoginOutlined";
 import '../../Login/LoginForm/Log';
+import './SiteAdminLogin.css';
 
 class SiteAdminLogging extends Component {
     state = {
@@ -34,7 +35,7 @@ class SiteAdminLogging extends Component {
                 const loginSuccess =  res.data.success;
                 console.log(loginSuccess)
                 localStorage.setItem('admin-token', res.data.token);
-                if (loginSuccess === true) window.location.replace("/siteLanding")
+                if (loginSuccess === true) window.location.replace("/adminDashboard")
 
             })
             .catch(error => {
@@ -46,13 +47,16 @@ class SiteAdminLogging extends Component {
     }
     render() {
         return (
+            <div>
+                <div className="row text-center">
+                    <div className="col-md-12">
+                        <h1 className="admin-login-h2">Admin Login</h1>
+                    </div>
+                </div>
             <div className="row">
                 <div className="col-md-4"></div>
                 <div className="col-md-4">
-                    <div className="row text-center">
-                        <h2>Admin Login</h2>
-                    </div>
-                    <form onSubmit={this.handleSubmit} className="login-form">
+                    <form onSubmit={this.handleSubmit}>
                         <div>
                             <img src="/images/logo.jpg" alt="" className="form-logo"/>
                         </div>
@@ -67,6 +71,7 @@ class SiteAdminLogging extends Component {
                     </form>
                 </div>
                 <div className="col-md-4"></div>
+            </div>
             </div>
         );
     }

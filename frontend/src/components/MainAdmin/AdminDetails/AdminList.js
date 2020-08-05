@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import AdminListnav from "./AdminListnav";
 
 class AdminList extends Component {
     render() {
         return (
             <div>
-                Admin lIST
+              <AdminListnav/>
             </div>
         );
     }

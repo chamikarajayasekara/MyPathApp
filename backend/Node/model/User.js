@@ -11,7 +11,15 @@ const userSchema = mongoose.Schema({
     },
     password:{
         type:String,
-        minlength:5
+        minlength:6
+    },
+    institute:{
+        type:String,
+        minlength:3
+    },
+    location:{
+        type:String,
+        minlength:3
     },
     created_date: {
         type: Date, default: Date.now

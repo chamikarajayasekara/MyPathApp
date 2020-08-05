@@ -1,0 +1,19 @@
+.admin-nav{
+    height: 8vh;
+}
+.adminnav-1{
+    background-color: #283e51;
+    color: lavender;
+}
+
+.adminnav-1>h5{
+    color: lavender;
+    margin-top: 2vh;
+    font-family: 'Paytone One', sans-serif;
+    font-size: 4vh;
+    /*font-family: 'Rubik Mono One', sans-serif;*/
+    /*font-family: 'Russo One', sans-serif;*/
+}
+.adminnav-1>h5>span{
+    font-family: 'IBM Plex Serif', serif;
+}
