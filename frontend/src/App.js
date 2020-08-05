@@ -7,10 +7,15 @@ import NavBar from "./components/NavBar/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Login from "./components/Login/Login";
 import Courses from "./components/Courses/Courses";
-import Profile from "./components/Login/Profile";
-import LoginForm from "./components/Login/LoginForm/LoginForm";
-import Protected from "./components/jwt/Protected";
+import Profile from "./components/Login/profile/Profile";
 import AuthComponent from "./components/Login/AtheComp/AuthComponent";
+import CourseCompare from "./components/CourseCompare/CourseCompare";
+import CareerPrediction from "./components/CareerPrediction/CareerPrediction";
+import StateUniversity from "./components/StateUniversities/StateUniversity";
+import SiteAdminLogging from "./components/MainAdmin/SiteAdmin/SiteAdminLogging";
+import SiteAdminLandPage from "./components/MainAdmin/SiteAdminLandPage/SiteAdminLandPage";
+
+
 
 
 class App extends Component{
@@ -31,13 +36,14 @@ class App extends Component{
                           <Route exact path="/about" component={About}/>
                           <Route path="/login" component={Login}/>
                           <Route path="/courses" component={Courses}/>
+                          <Route path="/compare" component={CourseCompare}/>
+                          <Route path="/CareerTest" component={CareerPrediction}/>
+                          <Route path="/StateUniversities" component={StateUniversity}/>
+                          <Route path="/admin" component={SiteAdminLogging}/>
 
-                          <Route path="/loginform" component={LoginForm}/>
-                          {/*<Authentication>*/}
-                          {/*    <Route path="/profile" component={Profile}/>*/}
-                          {/*</Authentication>*/}
                           <AuthComponent>
                               <Route path={'/profile'} component={Profile} />
+                              <Route path={'/siteLanding'} component={SiteAdminLandPage}/>
                           </AuthComponent>
                       </Switch>
                   </div>

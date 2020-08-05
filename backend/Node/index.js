@@ -26,7 +26,11 @@ app.use(cookieParser())
 
 //define the users routing
 // app.use('/api/users/', require('./routes/users'))
-app.use('/api/auth/',require('./routes/auth'))
+app.use('/api/auth/',require('./routes/auth'));
+app.use('/api/institute/',require('./routes/Institute'));
+app.use('/api/courses/',require('./routes/course'));
+app.use('/api/admin/',require('./routes/admin'));
+
 const port = process.env.PORT || 5000;
 const server = app.listen(port,()=>{
     console.log("app run in port "+port)

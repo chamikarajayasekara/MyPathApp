@@ -1,35 +1,34 @@
 const router = require('express').Router();
-const User2 = require('./User2');
+const User = require('../model/User');
 const bcrypt = require('bcryptjs')
 const {registerValidation,loginValidation} = require('../validation/validation')
 const jwt = require('jsonwebtoken')
 const verify = require('./TokenVerification')
 
 
-router.get('/', (req,res)=>{
-    res.send("helo")
-})
 
 router.post('/register', async (req, res) => {
 
     // VALIDATE BEFORE SAVING A USER
-    // const {error} = registerValidation(req.body)
-    // if (error) return res.status(400).send(error.details[0].message);
+    const {error} = registerValidation(req.body)
+    if (error) return res.status(400).send(error.details[0].message);
     //email exist or not
-    const emailExist =await  User2.findOne({email: req.body.email});
+    const emailExist =await  User.findOne({email: req.body.email});
     if (emailExist) return res.status(400).send("Email already exist");
     //hash password
     const salt = await  bcrypt.genSalt(10);
     const hashedPassword = await  bcrypt.hash(req.body.password, salt);
 
-    const user = new User2({
+    const user = new User({
         name:req.body.name,
         email: req.body.email,
         password: hashedPassword,
+        institute:req.body.institute,
+        location:req.body.location
     });
     try {
         const savedUser = await user.save();
-        res.send({user: user._id,name: user.name, email:user.email});
+        res.send({user: user._id,name: user.name, email:user.email,institute:user.institute,location:user.location });
     }catch (e) {
         res.status(400).send(e);
     }
@@ -38,11 +37,11 @@ router.post('/register', async (req, res) => {
 
 //Login
 router.post('/login',async (req,res)=>{
-    // const {error} = loginValidation(req.body);
-    // if (error) return res.status(400).send(error.details[0].message+"xxxx");
+    const {error} = loginValidation(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
 
     //email exist or not
-    const user =await  User2.findOne({email: req.body.email});
+    const user =await  User.findOne({email: req.body.email});
     if (!user) return res.status(400).send("Email not found");
     //password is correct
     const validPass = await bcrypt.compare(req.body.password , user.password);
@@ -63,7 +62,8 @@ router.post('/login',async (req,res)=>{
             .json({
                 success: true,
                 token: token,
-                name: user.name
+                name: user.name,
+                id:user._id,
                 //token: "JWT " + token
             })
             .send();
@@ -76,9 +76,10 @@ router.post('/login',async (req,res)=>{
     }
 })
 
+
 //Logout
 router.get('/logout', verify, (req,res)=>{
-    User2.findOneAndUpdate({_id:req.user._id},{token:""}, (err)=>{
+    User.findOneAndUpdate({_id:req.user._id},{token:""}, (err)=>{
         if (err) return res.json({success:false, err})
         return res.status(200).send({
             success:true
@@ -88,14 +89,63 @@ router.get('/logout', verify, (req,res)=>{
 
 //auth
 
-router.get("/auth",verify ,(req,res)=>{
-    const token = res.header("auth-token");
-    // if (token === )
-    res.status(200).json({
-        _id:req.user._id,
-        email: req.user.email,
-        name:req.user.name,
-    });
+router.get("/details/:_id", verify, async (req,res)=>{
+    User.findById(req.params._id,(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+router.get("/", verify ,(req,res)=>{
+    User.find((data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
 });
 
+router.delete("/delete/:_id", verify ,(req,res)=>{
+    User.findByIdAndRemove(req.params._id,(err)=>{
+        if (err) {
+            return res.status(404).send({
+                message: "user not found with id " + req.params._id
+            });
+        }else {
+            return res.status(200).send({
+                message: "deleted" + req.params._id
+            });
+        }
+    })
+});
+
+
+router.put("/update/:_id",verify, async (req, res, next) => {
+    User.findByIdAndUpdate(req.params._id, req.body, (err, user) => {
+        if (err) {
+            res.json({
+                success: false,
+                msg: "Fail to Update User."
+            });
+            console.log(err);
+        } else {
+            console.log(user);
+            res.status(200).send(user);
+        }
+    });
+
+});
+
+router.post("/name",verify,(req,res)=>{
+    User.find({name:req.body.name},(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+})
 module.exports = router;

@@ -39,7 +39,7 @@ class HomeFunctions extends Component {
                     </Link>
                 </div>
                 <div className="card-body bg-light mt-2">
-                    <Link to="/carrerTest" style={{textDecoration:"none"}}>
+                    <Link to="/CareerTest" style={{textDecoration:"none"}}>
                     <div className="row">
                         <div className="col-md-3">
                             <FontAwesome

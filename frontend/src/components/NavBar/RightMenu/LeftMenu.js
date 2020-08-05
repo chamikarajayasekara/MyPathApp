@@ -17,7 +17,7 @@ function LeftMenu (props) {
                     <Link to="/courses" style={{textDecoration:"none"}}>Courses</Link>
                 </Menu.Item>
                 <Menu.Item key="login">
-                    <Link to="/login" style={{textDecoration:"none"}}>Institute Login</Link>
+                    <Link to="/login" style={{textDecoration:"none"}}>Institute Profile</Link>
                 </Menu.Item>
             </Menu>
         );
