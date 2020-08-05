@@ -12,7 +12,10 @@ const userSchema = mongoose.Schema({
     password:{
         type:String,
         minlength:5
-    }
+    },
+    created_date: {
+        type: Date, default: Date.now
+    },
 })
 
-module.exports = mongoose.model("User2",userSchema)
+module.exports = mongoose.model("User",userSchema)
