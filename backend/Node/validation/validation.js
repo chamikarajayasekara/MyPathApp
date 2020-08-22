@@ -138,9 +138,27 @@ const adminValidation = data => {
     });
     return schema.validate(data);
 };
+const imageValidation = data =>{
+    const schema = joi.object({
+        user_id: joi.any(),
+        image:joi.string(),
+    });
+    return schema.validate(data);
+}
 
+const categoryValidation = data =>{
+    const schema = joi.object({
+        name: joi
+            .string()
+            .min(3)
+            .required(),
+    });
+    return schema.validate(data);
+}
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.instituteValidation =instituteValidation;
 module.exports.courseValidation =courseValidation;
 module.exports.adminValidation =adminValidation;
+module.exports.imageValidation = imageValidation;
+module.exports.categoryValidation = categoryValidation;

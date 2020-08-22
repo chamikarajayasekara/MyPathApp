@@ -14,8 +14,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {Button} from "@material-ui/core";
 import {Link} from "react-router-dom";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
 import AdminListnav from "./AdminListnav";
 
 const useStyles = makeStyles({
@@ -137,8 +135,8 @@ const AdminTable =(props)=> {
                                             {/*</TableCell>*/}
                                             <TableCell style={{ width: 200 }}  align="center">
                                                 <ThemeProvider theme={customTheme}>
-                                                    <Button color="primary"><Link className="nav-link " to={"/editUser/"+admin._id}><EditIcon/></Link></Button>&nbsp;
-                                                    <Button color="secondary" variant="contained" onClick={() => {DeleteUser(admin._id)}}><DeleteIcon/></Button>
+                                                    <Button color="primary"><Link className="nav-link " to={"/editUser/"+admin._id} style={{textDecoration:"none"}}>delete</Link></Button>&nbsp;
+                                                    <Button color="secondary" variant="contained" onClick={() => {DeleteUser(admin._id)}}>edit</Button>
                                                 </ThemeProvider>
                                             </TableCell>
                                         </TableRow>

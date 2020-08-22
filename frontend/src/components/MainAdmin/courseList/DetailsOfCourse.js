@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import axios from "axios";
 
-class CourseDetails extends Component {
+class DetailsOfCourse extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             result:'',
-            name:'',
         }
     }
 
     componentDidMount() {
-        const token =  localStorage.getItem('cool-jwt');
-
+        const url = "http://localhost:5000/api/courses/details/"+this.props.match.params._id;
+        console.log(url)
+        const token =  localStorage.getItem('admin-token');
+        console.log(this.props.match.params.id)
         axios.get('http://localhost:5000/api/courses/details/'+this.props.match.params.id,{ headers: {"auth-token": token}})
             .then(res=>{
                 console.log(res.data);
@@ -27,6 +28,7 @@ class CourseDetails extends Component {
     render() {
         return (
             <div>
+                <p>{this.state.result.institute}</p>
                 <p>{this.state.result.name}</p>
                 <p>{this.state.result.category}</p>
                 <p>{this.state.result.level}</p>
@@ -41,4 +43,4 @@ class CourseDetails extends Component {
     }
 }
 
-export default CourseDetails;
+export default DetailsOfCourse;

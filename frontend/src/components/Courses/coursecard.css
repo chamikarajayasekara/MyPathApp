@@ -1,0 +1,9 @@
+.card-client{
+    width: 22vw;
+    margin-left: 7vw;
+}
+.card-client-head{
+    height:20vh;
+    background-color: #110f4e;
+    color: lavender;
+}

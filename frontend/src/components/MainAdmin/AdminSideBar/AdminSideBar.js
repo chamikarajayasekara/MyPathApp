@@ -34,7 +34,7 @@ class AdminSideBar extends Component {
                             </div>
                         </div>
                     </Link>
-                    <Link to="/CourseList" style={{textDecoration:"none"}}>
+                    <Link to="/ListOfCourses" style={{textDecoration:"none"}}>
                         <div className="sidebar-tabs">
                             <div className="col-lg-10 content">
                                 <li className="nav-list">

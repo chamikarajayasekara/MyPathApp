@@ -13,8 +13,9 @@ const SearchBar= ({onSearch}) =>{
         <div>
             <Search
                 type="text"
-                style={{width:"240px"}}
-                placeholder="Search"
+                style={{width:"500px"}}
+                placeholder="Search Your Course"
+                className="p-3"
                 value={search}
                 onChange={(e) => onInputChange(e.target.value)}
             />

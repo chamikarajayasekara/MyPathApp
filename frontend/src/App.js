@@ -14,6 +14,8 @@ import CareerPrediction from "./components/CareerPrediction/CareerPrediction";
 import StateUniversity from "./components/StateUniversities/StateUniversity";
 import SiteAdminLogging from "./components/MainAdmin/SiteAdmin/SiteAdminLogging";
 import SiteAdminLandPage from "./components/MainAdmin/SiteAdminLandPage/SiteAdminLandPage";
+import courseDet from "./components/Courses/courseDet";
+
 
 
 
@@ -40,6 +42,7 @@ class App extends Component{
                           <Route path="/CareerTest" component={CareerPrediction}/>
                           <Route path="/StateUniversities" component={StateUniversity}/>
                           <Route path="/admin" component={SiteAdminLogging}/>
+                          <Route path="/courseDet/:id" component={courseDet}/>
 
                           <AuthComponent>
                               <Route path={'/profile'} component={Profile} />

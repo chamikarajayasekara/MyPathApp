@@ -130,7 +130,7 @@ class SiteAdminDashboard extends Component {
                                 </div>
                             </div>
                             <hr  className="line"/>
-                            <span><Link to="/instituteTable" style={{textDecoration:"none"}}>More info&nbsp;&nbsp;
+                            <span><Link to="/ListOfCourses" style={{textDecoration:"none"}}>More info&nbsp;&nbsp;
                                 <FontAwesome
                                     name="fas fa-chevron-right"
                                     size="1x"

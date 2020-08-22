@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const verify = require("./TokenVerification");
 const {courseValidation} = require("../validation/validation")
-const Course = require('../model/courses')
+const Course = require('../model/courses');
 
 router.post('/register', verify, async (req, res) => {
     const {error} = courseValidation(req.body)
@@ -45,8 +45,8 @@ router.post("/",verify,(req,res)=>{
     })
 })
 
-router.get("/details/:_id", verify, async (req,res)=>{
-    Course.findById(req.params._id,(data,err)=>{
+router.get("/details/:id", verify, async (req,res)=>{
+    Course.findById(req.params.id,(data,err)=>{
         if (err) {
             return res.json(err)
         }else {
@@ -57,6 +57,47 @@ router.get("/details/:_id", verify, async (req,res)=>{
 
 router.get("/details", verify ,(req,res)=>{
     Course.find((data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+router.get("/list",(req,res)=>{
+    Course.find((data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+router.get("/list/:id", async (req,res)=>{
+    Course.findById(req.params.id,(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+router.post("/pass", async (req,res)=>{
+    // res.send(req.query);
+    console.log(req.query)
+    Course.find(req.query,(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+
+router.post("/like", async (req,res)=>{
+    req.query = 'Business'
+    const word = req.query
+    Course.find({category:/word/},(data,err)=>{
         if (err) {
             return res.json(err)
         }else {

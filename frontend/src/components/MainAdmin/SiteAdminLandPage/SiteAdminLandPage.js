@@ -19,6 +19,8 @@ import UsersTable from "../SiteAdminUsersList/Userstable";
 import EditUsersList from "../SiteAdminUsersList/EditUsersList";
 import AddAdmin from "../AdminDetails/AddAdmin";
 import AdminTable from "../AdminDetails/AdminTable";
+import ListOfCourses from "../courseList/ListOfCourses";
+import DetailsOfCourse from "../courseList/DetailsOfCourse";
 // import EditBookComponent from "../InstituteList/test";
 
 class SiteAdminLandPage extends Component {
@@ -44,6 +46,8 @@ class SiteAdminLandPage extends Component {
                         <Route path="/editUser/:id" component={EditUsersList}/>
                         <Route path="/addAdmin" component={AddAdmin}/>
                         <Route path="/adminTable" component={AdminTable}/>
+                        <Route path="/ListOfCourses" component={ListOfCourses}/>
+                        <Route path="/DetailsOfCourse/:id" component={DetailsOfCourse}/>
 
                         {/*<Route path="/test/:id" component={EditBookComponent}/>*/}
                     </div>

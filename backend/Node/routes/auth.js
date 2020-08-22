@@ -4,10 +4,36 @@ const bcrypt = require('bcryptjs')
 const {registerValidation,loginValidation} = require('../validation/validation')
 const jwt = require('jsonwebtoken')
 const verify = require('./TokenVerification')
+const multer = require('multer');
 
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
 
+const fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
 
-router.post('/register', async (req, res) => {
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
+
+router.post('/register',async (req, res) => {
+    console.log(req.file);
 
     // VALIDATE BEFORE SAVING A USER
     const {error} = registerValidation(req.body)
@@ -24,7 +50,7 @@ router.post('/register', async (req, res) => {
         email: req.body.email,
         password: hashedPassword,
         institute:req.body.institute,
-        location:req.body.location
+        location:req.body.location,
     });
     try {
         const savedUser = await user.save();
@@ -123,7 +149,7 @@ router.delete("/delete/:_id", verify ,(req,res)=>{
 });
 
 
-router.put("/update/:_id",verify, async (req, res, next) => {
+router.put("/update/:_id", upload.single('image'), verify, async (req, res, next) => {
     User.findByIdAndUpdate(req.params._id, req.body, (err, user) => {
         if (err) {
             res.json({
@@ -148,4 +174,22 @@ router.post("/name",verify,(req,res)=>{
         }
     })
 })
+
+
+
+router.put('/image/:id',upload.single('image'),(req,res)=>{
+    User.findByIdAndUpdate(req.params._id,req.file.path, (err, user) => {
+        if (err) {
+            res.json({
+                success: false,
+                msg: "Fail to Update User."
+            });
+            console.log(err);
+        } else {
+            console.log(user);
+            res.status(200).send(user);
+        }
+    });
+});
+
 module.exports = router;

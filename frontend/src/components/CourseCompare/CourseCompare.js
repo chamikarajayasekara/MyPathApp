@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import CoursesBar from "./CoursesBar";
 
 class CourseCompare extends Component {
     render() {
         return (
             <div>
-                course compare
+               <CoursesBar/>
             </div>
         );
     }
