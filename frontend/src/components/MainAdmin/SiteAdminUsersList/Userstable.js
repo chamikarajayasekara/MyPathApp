@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     },
     container: {
         maxHeight: 440,
+        marginBottom:'5px',
     },
 });
 const customTheme = createMuiTheme({
@@ -95,7 +96,7 @@ const UsersTable = (props)=> {
         return (
             <div>
                 <UserlistNav/>
-                <div className="container" style={{marginTop:"1vh",marginBottom:"3vh"}}>
+                <div className="container mt-3" >
                     <div className="row">
                         <div className="col-md-6">
                             <PaginationTab

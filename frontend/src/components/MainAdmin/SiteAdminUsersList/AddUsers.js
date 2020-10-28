@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import {Input, notification} from "antd";
-import InstituteNav from "../InstituteList/InstituteNav";
-import VerticalAlignTopOutlined from "@ant-design/icons/lib/icons/VerticalAlignTopOutlined";
-import UserAddOutlined from "@ant-design/icons/lib/icons/UserAddOutlined";
-import MailOutlined from "@ant-design/icons/lib/icons/MailOutlined";
-import KeyOutlined from "@ant-design/icons/lib/icons/KeyOutlined";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import UserlistNav from "./UserlistNav";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 class AddUsers extends Component {
     state = {
@@ -56,27 +55,46 @@ class AddUsers extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <UserlistNav/>
-                        <h1 className="admin-login-h2">Add User</h1>
+                        {/*<h4 className="admin-login-h2">Add User</h4>*/}
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-3"></div>
-                    <div className="col-md-6">
-                        <form onSubmit={this.Submit} className="login-form">
-                            <Input  className="form-inputs" type="text" name="name" onChange={this.handleChange} size="large" placeholder="name" prefix={<UserAddOutlined />} required />
+                <div className="row mt-3 mb-2">
+                    <div className="col-md-2"></div>
+                    <div className="col-md-8 bg-light">
+                        <h4 className="admin-login-h2"><PersonAddIcon/>&nbsp;Create new user</h4>
+                        <form onSubmit={this.Submit} className="login-form ">
+                            {/*<Input  className="form-inputs" type="text" name="name" onChange={this.handleChange} size="large" placeholder="name" prefix={<UserAddOutlined />} required />*/}
+                            {/*<br/>*/}
+                            {/*<Input className="form-inputs" type="text" name="email" onChange={this.handleChange} size="large" placeholder="email" prefix={<MailOutlined />} required />*/}
+                            {/*<br/>*/}
+                            {/*<Input className="form-inputs" type="text" name="password" onChange={this.handleChange} size="large" placeholder="password" prefix={<KeyOutlined />} required />*/}
+                            {/*<br/>*/}
+                            {/*<Input  className="form-inputs" type="text" name="institute" onChange={this.handleChange} size="large" placeholder="institute" prefix={<UserAddOutlined />} required />*/}
+                            {/*<br/>*/}
+                            {/*<Input className="form-inputs" type="text" name="location" onChange={this.handleChange} size="large" placeholder="location" prefix={<MailOutlined />} required />*/}
+                            {/*<br/>*/}
+                            <TextField id="outlined-basic" label="Name" variant="outlined" className="input-bar my-2" type="text" name="name" onChange={this.handleChange} required  />
                             <br/>
-                            <Input className="form-inputs" type="text" name="email" onChange={this.handleChange} size="large" placeholder="email" prefix={<MailOutlined />} required />
+                            <TextField id="outlined-basic" label="Email" variant="outlined" className="input-bar  my-2 " type="text" name="email" onChange={this.handleChange}  required />
                             <br/>
-                            <Input className="form-inputs" type="text" name="password" onChange={this.handleChange} size="large" placeholder="password" prefix={<KeyOutlined />} required />
+                            <TextField id="outlined-basic" label="Password" variant="outlined" className="input-bar  my-2 " type="text" name="password" onChange={this.handleChange}  required />
                             <br/>
-                            <Input  className="form-inputs" type="text" name="institute" onChange={this.handleChange} size="large" placeholder="institute" prefix={<UserAddOutlined />} required />
+                            <TextField id="outlined-basic" label="Institute" variant="outlined" className="input-bar  my-2" type="text" name="institute" onChange={this.handleChange} required  />
                             <br/>
-                            <Input className="form-inputs" type="text" name="location" onChange={this.handleChange} size="large" placeholder="location" prefix={<MailOutlined />} required />
+                            <TextField id="outlined-basic" label="Location" variant="outlined" className="input-bar  my-2" type="text" name="location" onChange={this.handleChange}  required />
                             <br/>
-                            <button className="login" type="submit"><VerticalAlignTopOutlined />&nbsp;Add User</button>
+                            {/*<button className="login" type="submit"><VerticalAlignTopOutlined />&nbsp;Add User</button>*/}
+                            <Button
+                                variant="contained"
+                                type="submit"
+                                style={{backgroundColor:"#01579b"}}
+                                className="float-right text-white mt-2 mb-3"
+                                endIcon={<CheckCircleIcon/>}>
+                                Add User
+                            </Button>
                         </form>
                     </div>
-                    <div className="col-md-3"></div>
+                    <div className="col-md-2"></div>
                 </div>
             </div>
         );

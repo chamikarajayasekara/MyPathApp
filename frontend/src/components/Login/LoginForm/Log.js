@@ -67,7 +67,7 @@ class Log extends Component {
                         </div>
                         <Input  className="form-inputs" type="text" name="email" onChange={this.handleChange} size="large" placeholder="email" prefix={<UserOutlined />} required />
                         <br/>
-                        <Input className="form-inputs" type="text" name="password" onChange={this.handleChange} size="large" placeholder="password" prefix={<KeyOutlined />} required />
+                        <Input className="form-inputs" type="password" name="password" onChange={this.handleChange} size="large" placeholder="password" prefix={<KeyOutlined />} required />
                         <br/>
                             {/*<button className="btn" id="loginBtn" type="submit">*/}
                             {/*    <LoginOutlined/>&nbsp;Login*/}

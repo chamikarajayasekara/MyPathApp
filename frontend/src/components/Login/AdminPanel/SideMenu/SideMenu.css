@@ -19,10 +19,15 @@
     list-style: none;
     margin-top: 2vh;
 }
-/*.sidebar-tabs:hover{*/
-/*    background-color: #110f4e;*/
-/*    color: #282c34;*/
-/*}*/
+.sidebar-tabs-add{
+    background-color: #01579b;
+    list-style: none;
+    margin-top: 2vh;
+}
+.sidebar-tabs-add:hover{
+    background-color: #110f4e;
+    color: #282c34;
+}
 .admin-col-2-icon{
     margin-top: 2vh;
 }

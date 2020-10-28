@@ -1,12 +1,9 @@
-
 import React, {Component} from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from "axios";
-import CourseCard from "./CourseCard";
-import './compare.css';
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
 
-export default class CoursesBar extends Component {
+class CoursebarRight extends Component {
     state = {
         courses: [],
         details: '',
@@ -53,8 +50,7 @@ export default class CoursesBar extends Component {
         const x = this.state.status = true;
         console.log(x)
     }
-
-        render() {
+    render() {
         // console.log(this.state.result.name)
         let {status} = this.state;
         console.log({status})
@@ -72,24 +68,19 @@ export default class CoursesBar extends Component {
                         <div className="col-md-12 mt-1 text-left">
                             <hr/>
                             <div className="row size1">
-                                <div className="col-md-2">Name</div>
-                                <div className="col-md-10"> <span>{details.name}</span></div>
+                                <div className="col-md-12"> <span>{details.name}</span></div>
                             </div><hr/>
                             <div className="row size1">
-                                <div className="col-md-2">Institute</div>
-                                <div className="col-md-10"> <span>{details.institute}</span></div>
+                                <div className="col-md-12"> <span>{details.institute}</span></div>
                             </div><hr/>
                             <div className="row size1">
-                                <div className="col-md-2">Category</div>
-                                <div className="col-md-10"> <span>{details.category}</span></div>
+                                <div className="col-md-12"> <span>{details.category}</span></div>
                             </div><hr/>
                             <div className="row size1">
-                                <div className="col-md-2">Level</div>
-                                <div className="col-md-10"> <span>{details.level}</span></div>
+                                <div className="col-md-12"> <span>{details.level}</span></div>
                             </div><hr/>
                             <div className="row size2">
-                                <div className="col-md-2">Description</div>
-                                <div className="col-md-10"><span>{details.description}</span></div>
+                                <div className="col-md-12"><span>{details.description}</span></div>
                             </div><hr/>
 
                         </div>
@@ -123,9 +114,8 @@ export default class CoursesBar extends Component {
                 </div>
 
             </div>
-
-
         );
-
     }
 }
+
+export default CoursebarRight;

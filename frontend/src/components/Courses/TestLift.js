@@ -7,7 +7,9 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import Skeltons from "./Skeltons";
 import {Link} from "react-router-dom";
+
 
 class TestLift extends Component {
     constructor(props) {
@@ -22,21 +24,20 @@ class TestLift extends Component {
             status:false,
             courses:[],
             way:false,
+            readyState:false,
         }
     }
     componentDidMount() {
         axios.get('http://localhost:5000/api/courses/list')
             .then(res=>{
-                console.log(res.data);
-                console.log(res)
+                console.log(res.request.readyState)
                 this.setState({
-                    courses:res.data
+                    courses:res.data,
+                    readyState:true,
                 })
             })
         axios.get('http://localhost:5000/api/category/list')
             .then(res=>{
-                console.log(res.data);
-                console.log(res)
                 this.setState({
                     category:res.data
                 })
@@ -45,8 +46,6 @@ class TestLift extends Component {
     handleCheckBox = (e,option) =>{
         let selected = [...this.state.selected]
         selected = e.target.value
-
-        console.log(option)
         if (option === true){
             this.setState({status:true})
             this.setState({selected})
@@ -56,15 +55,15 @@ class TestLift extends Component {
             this.setState({selected:''})
             this.setState({way:false})
         }
-
+        this.setState({ readyState:false})
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
     axios.post('http://localhost:5000/api/courses/pass?category='+this.state.selected+'&level=Degree')
         .then(res=>{
-            console.log(res.data)
             this.setState({
                 courses:res.data,
                 size:res.data.length,
+                readyState:true
             })
         }).catch(e =>{
         this.setState({
@@ -77,6 +76,7 @@ class TestLift extends Component {
         this.setState({searchTerm})
         this.setState({way:false})
     }
+
     render() {
         const characters = this.props.characters.filter(character =>
             character.name.toLowerCase().includes(
@@ -85,10 +85,41 @@ class TestLift extends Component {
         );
 
         let {way} = this.state;
-        console.log({way})
         let {size} = this.state;
+        let {readyState} = this.state;
+
+
+
+        //
+        // const loadFunction = () =>{
+        //     if (readyState === false){
+        //         return   <div className="row">
+        //             <div className="col-md-2 mt-1 ml-1">
+        //             </div>
+        //             <div className="col-md-8 mt-1">
+        //              <Skeltons/>
+        //             </div>
+        //         </div>
+        //     }
+        // }
+
+      const fuck =  () => {
+        { this.state.courses.map(course =>
+            <Link to={"/courseDet/"+course._id} style={{textDecoration:"none"}}>
+                <div className="card d-flex  flex-wrap card-client mb-3 mt-3 ml-lg-3 text-center" key={course._id}>
+                    <div className="card-header card-client-head">
+                        <p className="text-left">{course.institute}</p>
+                        <p className="text-white">{course.name}</p>
+                    </div>
+                    <div className="card-body">
+                        <p>{course.category}&nbsp;{course.level}</p>
+                    </div>
+                </div>
+            </Link>)}
+        }
+
         const renderAuthButton = () => {
-            if (way === false){
+            if (way === false  ){
                 return  <div className="row">
                             <div className="col-md-2 mt-1 ml-1">
                                 <FormControl component="fieldset" >
@@ -112,7 +143,7 @@ class TestLift extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <CharacterList characters={characters}  />
+                                        {readyState? <CharacterList characters={characters}  /> : <Skeltons/>}
                                     </div>
                                 </div>
                             </div>
@@ -141,27 +172,28 @@ class TestLift extends Component {
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <h1>{this.state.selected}</h1>
+                                <div className="row mt-3">
+                                    <div className="col-md-1">
                                     </div>
-                                    <div className="col-md-6">
-                                        <h5>{this.state.size}&nbsp;courses found</h5>
+                                    <div className="col-md-11">
+                                        <h3 className="text-left">"{this.state.selected}"&nbsp;&nbsp;({this.state.size}&nbsp;courses found)</h3>
                                     </div>
                                 </div>
                                 <div className="row">
-                                { this.state.courses.map(course =>
-                                <Link to={"/courseDet/"+course._id} style={{textDecoration:"none"}}>
-                                    <div className="card d-flex  flex-wrap card-client mb-3 mt-3 ml-lg-3 text-center" key={course._id}>
-                                        <div className="card-header card-client-head">
-                                            <p className="text-left">{course.institute}</p>
-                                            <p className="text-white">{course.name}</p>
-                                        </div>
-                                        <div className="card-body">
-                                            <p>{course.category}&nbsp;{course.level}</p>
-                                        </div>
-                                    </div>
-                                </Link>)}
+                                    {readyState? <div className="row">
+                                        { this.state.courses.map(course =>
+                                            <Link to={"/courseDet/"+course._id} style={{textDecoration:"none"}}>
+                                                <div className="card d-flex  flex-wrap card-client mb-3 mt-3 ml-lg-3 text-center" key={course._id}>
+                                                    <div className="card-header card-client-head">
+                                                        <p className="text-left">{course.institute}</p>
+                                                        <p className="text-white">{course.name}</p>
+                                                    </div>
+                                                    <div className="card-body">
+                                                        <p>{course.category}&nbsp;{course.level}</p>
+                                                    </div>
+                                                </div>
+                                            </Link>)}
+                                    </div> : <Skeltons/>}
                             </div>
                             </div>
                         </div>
@@ -172,7 +204,8 @@ class TestLift extends Component {
         return (
             <div>
                 {renderAuthButton()}
-
+                {/*{loadFunction()}*/}
+                {/*<Skeleton active avatar paragraph={{ rows: 4 }} style={{width:"250"}} size={"small"}/>*/}
             </div>
 
 

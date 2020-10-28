@@ -8,12 +8,12 @@ class CourseListnav extends Component {
                 <div className="col-md-3"></div>
                 <div className="col-md-3">
                     <Link to="/CourseAdd" style={{textDecoration:"none"}}>
-                        <li className="sidebar-tabs content text-light">Add Course</li>
+                        <li className="sidebar-tabs-add content text-light"  style={{backgroundColor:"#01579b"}}>Add Course</li>
                     </Link>
                 </div>
                 <div className="col-md-3">
                     <Link to="/CourseList" style={{textDecoration:"none"}}>
-                        <li className="sidebar-tabs content text-light">My Courses</li>
+                        <li className="sidebar-tabs-add content text-light" style={{backgroundColor:"#01579b"}}>My Courses</li>
                     </Link>
                 </div>
             </div>

@@ -1,10 +1,11 @@
 .sidemenu-tab{
     background-color: #283e51;
     position: relative;
+    height: auto;
 }
 .Admin-panel{
     background-color:lavender;
-
+    height: auto;
 }
 
 .sidebar-dashboard{

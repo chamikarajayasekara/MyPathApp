@@ -4,3 +4,8 @@
 .line{
     background-color:#4b79a1 ;
 }
+.input-bar{
+    width: 30vw;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+}

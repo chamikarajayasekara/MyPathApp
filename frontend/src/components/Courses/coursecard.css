@@ -7,3 +7,36 @@
     background-color: #110f4e;
     color: lavender;
 }
+h5{
+    font-family: 'IBM Plex Serif', serif;
+}
+h3{
+    font-family: 'IBM Plex Serif', serif;
+    color: #4b79a1;
+}
+h2{
+    font-family: 'IBM Plex Serif', serif;
+    color: lavender;
+    margin-top: 5vh;
+}
+
+.row-1{
+    height: 32vh;
+    background-color: #283e51;
+}
+.row-2{
+
+}
+.description-col{
+    border: 1px solid #110f4e;
+    font-family: 'Varela Round', sans-serif;
+}
+p{
+    font-family: 'Varela Round', sans-serif;
+}
+.description-page{
+    height:100vh;
+}
+.accordion-div{
+    margin-left: 5vw;
+}

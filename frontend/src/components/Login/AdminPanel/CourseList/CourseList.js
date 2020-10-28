@@ -31,7 +31,7 @@ class CourseList extends Component {
             <div>
 
             <div>
-                <h1 className="admin-login-h2">Courses in {this.state.institute}</h1>
+                <h5 className="admin-login-h2">Courses in {this.state.institute}</h5>
             </div>
             <div className="row container ">
                 {this.state.courseList.map(course=>
