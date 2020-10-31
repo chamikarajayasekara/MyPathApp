@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {Input, notification} from "antd";
+import {BackTop, Input, notification} from "antd";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import UserlistNav from "./UserlistNav";
 import TextField from "@material-ui/core/TextField";
@@ -59,20 +59,10 @@ class AddUsers extends Component {
                     </div>
                 </div>
                 <div className="row mt-3 mb-2">
-                    <div className="col-md-2"></div>
-                    <div className="col-md-8 bg-light">
+                    <div className="col-md-1"></div>
+                    <div className="col-md-8 bg-light border border-info">
                         <h4 className="admin-login-h2"><PersonAddIcon/>&nbsp;Create new user</h4>
                         <form onSubmit={this.Submit} className="login-form ">
-                            {/*<Input  className="form-inputs" type="text" name="name" onChange={this.handleChange} size="large" placeholder="name" prefix={<UserAddOutlined />} required />*/}
-                            {/*<br/>*/}
-                            {/*<Input className="form-inputs" type="text" name="email" onChange={this.handleChange} size="large" placeholder="email" prefix={<MailOutlined />} required />*/}
-                            {/*<br/>*/}
-                            {/*<Input className="form-inputs" type="text" name="password" onChange={this.handleChange} size="large" placeholder="password" prefix={<KeyOutlined />} required />*/}
-                            {/*<br/>*/}
-                            {/*<Input  className="form-inputs" type="text" name="institute" onChange={this.handleChange} size="large" placeholder="institute" prefix={<UserAddOutlined />} required />*/}
-                            {/*<br/>*/}
-                            {/*<Input className="form-inputs" type="text" name="location" onChange={this.handleChange} size="large" placeholder="location" prefix={<MailOutlined />} required />*/}
-                            {/*<br/>*/}
                             <TextField id="outlined-basic" label="Name" variant="outlined" className="input-bar my-2" type="text" name="name" onChange={this.handleChange} required  />
                             <br/>
                             <TextField id="outlined-basic" label="Email" variant="outlined" className="input-bar  my-2 " type="text" name="email" onChange={this.handleChange}  required />

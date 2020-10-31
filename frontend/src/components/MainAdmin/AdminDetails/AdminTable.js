@@ -15,6 +15,8 @@ import TableBody from "@material-ui/core/TableBody";
 import {Button} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import AdminListnav from "./AdminListnav";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles({
     root: {
@@ -91,9 +93,9 @@ const AdminTable =(props)=> {
         return (
             <div>
                 <AdminListnav/>
-                <div className="container" style={{marginTop:"1vh",marginBottom:"3vh"}}>
+                <div className="container " style={{marginTop:"1vh",marginBottom:"3vh"}}>
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-6 ">
                             <PaginationTab
                                 total={totalItems}
                                 itemsPerPage={ITEMS_PER_PAGE}
@@ -130,13 +132,10 @@ const AdminTable =(props)=> {
                                             <TableCell style={{ width: 400 }} align="left">
                                                 {admin.email}
                                             </TableCell>
-                                            {/*<TableCell style={{ width: 80 }}  align="left">*/}
-                                            {/*    {book.price}*/}
-                                            {/*</TableCell>*/}
                                             <TableCell style={{ width: 200 }}  align="center">
                                                 <ThemeProvider theme={customTheme}>
-                                                    <Button color="primary"><Link className="nav-link " to={"/editUser/"+admin._id} style={{textDecoration:"none"}}>delete</Link></Button>&nbsp;
-                                                    <Button color="secondary" variant="contained" onClick={() => {DeleteUser(admin._id)}}>edit</Button>
+                                                    <Button color="primary"><Link className="nav-link " to={"/editAdmin/"+admin._id}><EditIcon/></Link></Button>&nbsp;
+                                                    <Button color="secondary" variant="contained" onClick={() => {DeleteUser(admin._id)}}><DeleteIcon/></Button>
                                                 </ThemeProvider>
                                             </TableCell>
                                         </TableRow>

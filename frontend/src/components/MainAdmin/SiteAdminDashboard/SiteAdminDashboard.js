@@ -6,6 +6,7 @@ import UsergroupDeleteOutlined from "@ant-design/icons/lib/icons/UsergroupDelete
 import FontAwesome from "react-fontawesome";
 import { Card, Col, Row } from 'antd';
 import {Link} from "react-router-dom";
+import CourseAmountChart from "./CourseAmountChart";
 class SiteAdminDashboard extends Component {
     state={
         institutes:'',
@@ -139,6 +140,13 @@ class SiteAdminDashboard extends Component {
                         </Card>
                     </Col>
                 </Row>
+                <div className="row">
+                    <div className="col-md-2"></div>
+                    <div className="col-md-8">
+                        <CourseAmountChart/>
+                    </div>
+                    <div className="col-md-2"></div>
+                </div>
             </div>
         );
     }

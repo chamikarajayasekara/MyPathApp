@@ -13,9 +13,9 @@ class AdminSideBar extends Component {
     render() {
         return (
             <div className="row">
-                <Card type="card-header" className="text-left user-details-bar" style={{ width: 500 }}>
-                    <UserDetails/>
-                </Card>
+                {/*<Card type="card-header" className="text-left user-details-bar" style={{ width: 500 }}>*/}
+                {/*    <UserDetails/>*/}
+                {/*</Card>*/}
                 <ul className="sidebar">
                     <Link to="/adminDashboard" style={{textDecoration:"none"}}>
                         <div className="sidebar-tabs">

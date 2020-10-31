@@ -20,10 +20,9 @@ class SideMenu extends Component {
     render() {
         return (
             <div className="row">
-                <Card type="card-header" className="text-left user-details-bar" style={{ width: 500 }}>
-                    <UserDetails/>
-                </Card>
+
                     <ul className="sidebar">
+
                         <Link to="/dashboard" style={{textDecoration:"none"}}>
                         <div className="row sidebar-tabs">
                             <div className="col-lg-10 content">

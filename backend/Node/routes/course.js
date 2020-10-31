@@ -55,6 +55,36 @@ router.get("/details/:id", verify, async (req,res)=>{
     })
 });
 
+router.delete("/delete/:_id", verify ,(req,res)=>{
+    Course.findByIdAndRemove(req.params._id,(err)=>{
+        if (err) {
+            return res.status(404).send({
+                message: "Course not found with id " + req.params._id
+            });
+        }else {
+            return res.status(200).send({
+                message: "deleted" + req.params._id
+            });
+        }
+    })
+});
+
+router.put("/update/:_id",verify, async (req, res, next) => {
+    Course.findByIdAndUpdate(req.params._id, req.body, (err, user) => {
+        if (err) {
+            res.json({
+                success: false,
+                msg: "Fail to Update User."
+            });
+            console.log(err);
+        } else {
+            console.log(user);
+            res.status(200).send(user);
+        }
+    });
+
+});
+
 router.get("/details", verify ,(req,res)=>{
     Course.find((data,err)=>{
         if (err) {

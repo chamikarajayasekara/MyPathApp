@@ -4,6 +4,7 @@ import { Card, Col, Row } from 'antd';
 import {Link} from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
 import {Button} from "@material-ui/core";
+import CourseListtable from "./CourseListtable";
 class CourseList extends Component {
     state={
         courseList:[],
@@ -26,26 +27,28 @@ class CourseList extends Component {
             })
     }
 
+
     render() {
+        let size =this.state.courseList.length;
         return (
             <div>
-
-            <div>
-                <h5 className="admin-login-h2">Courses in {this.state.institute}</h5>
-            </div>
+                <div>
+                    <h5 className="admin-login-h2">Courses in {this.state.institute}</h5>
+                    <h5 className="admin-login-h2">{size}&nbsp;Courses found</h5>
+                </div>
             <div className="row container ">
-                {this.state.courseList.map(course=>
-                <Card className="col-md-4 card d-flex flex-row flex-wrap bd-highlight mb-3 mt-3 ">
+                {/*{this.state.courseList.map(course=>*/}
+                {/*<Card className="col-md-4 card d-flex flex-row flex-wrap bd-highlight mb-3 mt-3 ">*/}
 
-                        <div className="" key={course._id}>
-                            <p>{course.name}</p><hr/>
-                            <span>{course.category}</span>&nbsp;
-                            <span>{course.level}</span>
-                        </div>
-                    <Link to={"/CourseDetails/"+course._id}><span>More info</span></Link>
-                </Card>)}
+                {/*        <div className="" key={course._id}>*/}
+                {/*            <p>{course.name}</p><hr/>*/}
+                {/*            <span>{course.category}</span>&nbsp;*/}
+                {/*            <span>{course.level}</span>*/}
+                {/*        </div>*/}
+                {/*    <Link to={"/CourseDetails/"+course._id}><span>More info</span></Link>*/}
+                {/*</Card>)}*/}
             </div>
-
+               <CourseListtable/>
             </div>
         );
     }

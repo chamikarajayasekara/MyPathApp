@@ -20,7 +20,6 @@ export default class PersonList extends React.Component {
             <ul>
                 <p>Welcome&nbsp;{this.state.name}</p>
 
-                {/*{this.state.persons.email}*/}
             </ul>
         )
     }

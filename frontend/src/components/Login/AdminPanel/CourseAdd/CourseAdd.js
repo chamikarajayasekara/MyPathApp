@@ -14,9 +14,9 @@ class CourseAdd extends Component {
     render() {
         return (
             <div>
-                <div className="row">
+                <div className="row mt-1">
                     <div className="col-md-12">
-                        <CourseListnav/>
+                        {/*<CourseListnav/>*/}
                         <h5 className="admin-login-h2">Add Courses</h5>
                     </div>
                 </div>

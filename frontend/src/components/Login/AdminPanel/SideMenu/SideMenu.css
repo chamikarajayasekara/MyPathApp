@@ -3,19 +3,16 @@
     font-size: 3vh;
 }
 .sidebar{
-    background-color: #283e51;
+    /*background-color: #283e51;*/
     width: 24vw;
 
 }
 .content{
     padding: 5px;
 }
-.content:hover{
-    background-color:#4b79a1;;
-    color: #282c34;
-}
+
 .sidebar-tabs{
-    background-color: #283e51;
+    /*background-color: #283e51;*/
     list-style: none;
     margin-top: 2vh;
 }
@@ -36,6 +33,7 @@
     margin-bottom: 2vh;
     font-size: 15px;
     text-align: left;
-    color: lavender;
+    color: #01579b;
     font-family: 'IBM Plex Serif', serif;
 }
+

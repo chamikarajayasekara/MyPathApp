@@ -6,6 +6,8 @@ import KeyOutlined from "@ant-design/icons/lib/icons/KeyOutlined";
 import LoginOutlined from "@ant-design/icons/lib/icons/LoginOutlined";
 import '../../Login/LoginForm/Log';
 import './SiteAdminLogin.css';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 class SiteAdminLogging extends Component {
     state = {
@@ -49,25 +51,30 @@ class SiteAdminLogging extends Component {
         return (
             <div>
                 <div className="row text-center">
-                    <div className="col-md-12">
-                        <h1 className="admin-login-h2">Admin Login</h1>
+                    <div className="col-md-12 mt-3">
+                        <div>
+                            <img src="/images/logo.jpg" alt="" className="form-logo"/>
+                        </div>
                     </div>
                 </div>
             <div className="row">
                 <div className="col-md-4"></div>
-                <div className="col-md-4">
+                <div className="col-md-4 border border-info p-4">
+                    <h4 className="admin-login-h2"><LoginOutlined/>&nbsp;Admin Sign In</h4>
                     <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <img src="/images/logo.jpg" alt="" className="form-logo"/>
-                        </div>
-                        <Input  className="form-inputs" type="text" name="email" onChange={this.handleChange} size="large" placeholder="email" prefix={<UserOutlined />} required />
+
+                        <TextField id="outlined-basic" label="Email" variant="outlined" className="input-bar my-2" type="text" name="email" onChange={this.handleChange} size="large" placeholder="email" required  />
                         <br/>
-                        <Input className="form-inputs" type="password" name="password" onChange={this.handleChange} size="large" placeholder="password" prefix={<KeyOutlined />} required />
+                        <TextField id="outlined-basic" label="Password" variant="outlined" className="input-bar  my-2 " type="password" name="password" onChange={this.handleChange} size="large" placeholder="password" required />
                         <br/>
-                        {/*<button className="btn" id="loginBtn" type="submit">*/}
-                        {/*    <LoginOutlined/>&nbsp;Login*/}
-                        {/*</button>*/}
-                        <button className="login" type="submit"><LoginOutlined/>&nbsp;Login</button>
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            style={{backgroundColor:"#01579b"}}
+                            className="float-right text-white mt-2 mb-3"
+                            endIcon={<LoginOutlined/>}>
+                            Admin Sign in
+                        </Button>
                     </form>
                 </div>
                 <div className="col-md-4"></div>

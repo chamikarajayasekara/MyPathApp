@@ -26,6 +26,7 @@ const useStyles = makeStyles({
     container: {
         maxHeight: 440,
         marginBottom:'5px',
+        marginTop:'5px'
     },
 });
 const customTheme = createMuiTheme({
@@ -96,7 +97,7 @@ const UsersTable = (props)=> {
         return (
             <div>
                 <UserlistNav/>
-                <div className="container mt-3" >
+                <div className="container mt-3 " >
                     <div className="row">
                         <div className="col-md-6">
                             <PaginationTab
@@ -112,6 +113,7 @@ const UsersTable = (props)=> {
                                     setSearch(value);
                                     setCurrentPage(1);
                                 }}
+                                className="mb-2"
                             />
                         </div>
                     </div>
@@ -140,8 +142,8 @@ const UsersTable = (props)=> {
                                             {/*</TableCell>*/}
                                             <TableCell style={{ width: 200 }}  align="center">
                                                 <ThemeProvider theme={customTheme}>
-                                                    <Button color="primary"><Link className="nav-link " to={"/editUser/"+user._id}><EditIcon/></Link></Button>&nbsp;
-                                                    <Button color="secondary" variant="contained" onClick={() => {DeleteUser(user._id)}}><DeleteIcon/></Button>
+                                                    <Button color="primary"><Link className="nav-link " to={"/editUser/"+user._id}><EditIcon /></Link></Button>&nbsp;
+                                                    <Button  onClick={() => {DeleteUser(user._id)}}><DeleteIcon className="text-danger"/></Button>
                                                 </ThemeProvider>
                                             </TableCell>
                                         </TableRow>

@@ -6,6 +6,11 @@ import UserAddOutlined from "@ant-design/icons/lib/icons/UserAddOutlined";
 import MailOutlined from "@ant-design/icons/lib/icons/MailOutlined";
 import KeyOutlined from "@ant-design/icons/lib/icons/KeyOutlined";
 import VerticalAlignTopOutlined from "@ant-design/icons/lib/icons/VerticalAlignTopOutlined";
+import TextField from "@material-ui/core/TextField";
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import Button from "@material-ui/core/Button";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+
 
 class AddAdmin extends Component {
     state ={
@@ -51,20 +56,28 @@ class AddAdmin extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <AdminListnav/>
-                        <h1 className="admin-login-h2">Add Admin</h1>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-3"></div>
-                    <div className="col-md-6">
+                    <div className="col-md-2"></div>
+                    <div className="col-md-6 bg-light p-3 mt-3 border border-info">
+                        <h4 className="admin-login-h2"><SupervisorAccountIcon/>&nbsp;Create new Admin</h4>
                         <form onSubmit={this.handleSubmit} className="login-form">
-                            <Input  className="form-inputs" type="text" name="name" onChange={this.handleChange} size="large" placeholder="name" prefix={<UserAddOutlined />} required />
+                            <TextField id="outlined-basic" label="Name" variant="outlined" className="input-bar my-2" type="text" name="name" onChange={this.handleChange} required  />
                             <br/>
-                            <Input className="form-inputs" type="text" name="email" onChange={this.handleChange} size="large" placeholder="email" prefix={<MailOutlined />} required />
+                            <TextField id="outlined-basic" label="Email" variant="outlined" className="input-bar  my-2 " type="text" name="email" onChange={this.handleChange}  required />
                             <br/>
-                            <Input className="form-inputs" type="text" name="password" onChange={this.handleChange} size="large" placeholder="password" prefix={<KeyOutlined />} required />
+                            <TextField id="outlined-basic" label="Password" variant="outlined" className="input-bar  my-2 " type="text" name="password" onChange={this.handleChange}  required />
                             <br/>
-                            <button className="login" type="submit"><VerticalAlignTopOutlined />&nbsp;Add Admin</button>
+                            {/*<button className="login" type="submit"><VerticalAlignTopOutlined />&nbsp;Add Admin</button>*/}
+                            <Button
+                                variant="contained"
+                                type="submit"
+                                style={{backgroundColor:"#01579b"}}
+                                className="float-right text-white mt-2 mb-3"
+                                endIcon={<VerticalAlignTopOutlined />}>
+                                Sign Up
+                            </Button>
                         </form>
                     </div>
                     <div className="col-md-3"></div>

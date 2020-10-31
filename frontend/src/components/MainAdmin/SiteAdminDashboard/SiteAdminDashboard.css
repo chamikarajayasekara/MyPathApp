@@ -6,6 +6,9 @@
 }
 .input-bar{
     width: 30vw;
-    margin-top: 1vh;
-    margin-bottom: 2vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.input-bar-edit{
+    width: 50vw;
 }

@@ -35,6 +35,7 @@ class Logout extends Component {
                     okText="Yes"
                     cancelText="No"
                     size="2"
+                    className="float-right mt-1 mb-1"
 
                     icon={<PoweroffOutlined style={{ color: 'blue' }} />}
                 >

@@ -1,38 +1,38 @@
 import React, {Component} from 'react';
-import {MDBCol, MDBContainer, MDBRow} from "mdbreact";
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import Button from '@material-ui/core/Button';
 import axios from "axios";
 import {Input, notification} from "antd";
-import SendIcon from '@material-ui/icons/Send';
-import BackspaceIcon from '@material-ui/icons/Backspace';
 import UserAddOutlined from "@ant-design/icons/lib/icons/UserAddOutlined";
 import MailOutlined from "@ant-design/icons/lib/icons/MailOutlined";
 import KeyOutlined from "@ant-design/icons/lib/icons/KeyOutlined";
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { Stepper } from 'react-form-stepper';
-import VerticalAlignTopOutlined from "@ant-design/icons/lib/icons/VerticalAlignTopOutlined";
-import TextArea from "antd/es/input/TextArea";
-import SchoolIcon from '@material-ui/icons/School';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import CategoryIcon from '@material-ui/icons/Category';
-import SortIcon from '@material-ui/icons/Sort';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import MoneyIcon from '@material-ui/icons/Money';
-import CreditCardIcon from '@material-ui/icons/CreditCard';
-import MoneyOffIcon from '@material-ui/icons/MoneyOff';
-import DetailsIcon from '@material-ui/icons/Details';
-import AddToQueueIcon from '@material-ui/icons/AddToQueue';
-import AddIcCallIcon from '@material-ui/icons/AddIcCall';
-import MoreIcon from '@material-ui/icons/More';
-import WorkIcon from '@material-ui/icons/Work';
+import TextField from "@material-ui/core/TextField";
+import {MDBContainer} from "mdbreact";
+import {Stepper} from "react-form-stepper";
+import Chip from "@material-ui/core/Chip";
+import Button from "@material-ui/core/Button";
+import SendIcon from "@material-ui/icons/Send";
+import BackspaceIcon from "@material-ui/icons/Backspace";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import EditAttributesIcon from '@material-ui/icons/EditAttributes';
+import SchoolIcon from "@material-ui/icons/School";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import CategoryIcon from "@material-ui/icons/Category";
+import SortIcon from "@material-ui/icons/Sort";
+import ScheduleIcon from "@material-ui/icons/Schedule";
+import MoneyIcon from "@material-ui/icons/Money";
+import CreditCardIcon from "@material-ui/icons/CreditCard";
+import MoneyOffIcon from "@material-ui/icons/MoneyOff";
+import DetailsIcon from "@material-ui/icons/Details";
+import AddToQueueIcon from "@material-ui/icons/AddToQueue";
+import AddIcCallIcon from "@material-ui/icons/AddIcCall";
+import MoreIcon from "@material-ui/icons/More";
+import WorkIcon from "@material-ui/icons/Work";
 
-class StepForm extends Component {
-    state={
-        formActivePanel1: 1,
-        formActivePanel1Changed: false,
-        current: 0,
+
+const { TextArea } = Input;
+
+class CourseEdit extends Component {
+
+    state ={
         user_id:'',
         name:'',
         institute:'',
@@ -49,30 +49,37 @@ class StepForm extends Component {
         contacts:'',
         further:'',
         career:'',
-        black:true,
+        formActivePanel1: 1,
+        formActivePanel1Changed: false,
         activeStep:0,
     }
-    async componentDidMount() {
+    componentDidMount() {
         const token =  localStorage.getItem('cool-jwt');
-        const username = localStorage.getItem('userName');
-        const user ={
-            name:username,
-        }
-        axios.post('http://localhost:5000/api/auth/name',user,{ headers: {"auth-token": token} })
+        const url = "http://localhost:5000/api/courses/details/"+this.props.match.params.id;
+        console.log(url)
+        axios.get(url,{ headers: {"auth-token": token} })
             .then(res=>{
-                const institutes = res.data;
-                console.log(res);
-                const institute = (res.data[0].institute);
-                // const user_id = localStorage.getItem('user_id');
-                this.setState({ institute});
-                // console.log(user_id);
-            }).catch(e=>{
-            console.log(e)
-        });
+                console.log(res.data)
+                console.log(res.data.name)
+                const name = res.data.name;
+                const institute = res.data.institute;
+                const category = res.data.category;
+                const level = res.data.level;
+                const description = res.data.description;
+                const duration = res.data.duration;
+                const cost = res.data.cost;
+                const payments = res.data.payments;
+                const scholarships = res.data.scholarships;
+                const qualifications = res.data.qualifications;
+                const content = res.data.content;
+                const enrollments = res.data.enrollments;
+                const contacts = res.data.contacts;
+                const further = res.data.further;
+                const career = res.data.career;
+                this.setState({name,institute,category,description,level,duration,cost,payments,scholarships,qualifications,content,enrollments,contacts,further,career})
+            })
     }
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    }
+
     swapFormActive = (a) => (param) => (e) => {
         this.setState({
             ['formActivePanel' + a]: param,
@@ -84,6 +91,7 @@ class StepForm extends Component {
         })
 
     }
+
     handleNextPrevClick = (a) => (param) => (e) => {
         this.setState({
             ['formActivePanel' + a]: param,
@@ -96,18 +104,16 @@ class StepForm extends Component {
         })
 
     }
-    calculateAutofocus = (a) => {
-        if (this.state['formActivePanel' + a + 'Changed']) {
-            return true
-        }
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
     }
+
     handleSubmit = event => {
         event.preventDefault();
         console.log(this.state.email , "hi")
         const token =  localStorage.getItem('cool-jwt');
-        const {user_id,name,institute,category,level,description,duration,cost,payments,scholarships,content,enrollments,contacts,further,career} = this.state;
+        const {name,institute,category,level,description,duration,cost,payments,scholarships,content,enrollments,contacts,further,career} = this.state;
         const user = {
-            user_id:user_id,
             institute:institute,
             name:name,
             category:category,
@@ -124,25 +130,25 @@ class StepForm extends Component {
             career:career
         };
         console.log(user)
-        axios.post(`http://localhost:5000/api/courses/register`, user,{ headers: {"auth-token": token} })
+        axios.put('http://localhost:5000/api/courses/update/'+this.props.match.params.id, user,{ headers: {"auth-token": token} })
             .then(res => {
                 console.log(res)
                 console.log(res.data);
                 notification.success({
-                    message: 'Add Courses',
+                    message: 'Edit Courses',
                     description: "Thank you! You're successfully added data!",
                 });
+                // window.location = '/CourseList';
             })
             .catch(error => {
                 notification.error({
-                    message: 'Course Add Failed',
+                    message: 'Course Edit Failed',
                     description: error+' '+'Please try again!'
                 });
                 console.log(error)
             });
     }
     render() {
-        const { current } = this.state;
         let {activeStep} = this.state;
         let {color} = this.state;
         let c,d,e;
@@ -168,13 +174,12 @@ class StepForm extends Component {
             d = "#01579b";
             e= "#01579b"
         }
-        console.log(color)
-        console.log(activeStep)
         return (
             <div>
                 <MDBContainer>
                     <div className="row">
                         <div className="col-md-12">
+                            <h5 className="admin-login-h2 mt-2">Edit Courses</h5>
                             <Stepper
                                 steps={[
                                     <Chip
@@ -212,15 +217,17 @@ class StepForm extends Component {
                         <div className="row">
                             {this.state.formActivePanel1 === 1 &&
                             (<div className="col-md-12">
-                                <Input  className="form-inputs" type="text" name="institute_name" value={this.state.institute} size="large" placeholder="Institute" prefix={<AccountCircleIcon/>} required />
+                                <Input  className="form-inputs" type="text" name="institute_name" value={this.state.institute} size="large" placeholder="institute_name" prefix={<AccountCircleIcon/>} required />
                                 <br/>
-                                <Input className="form-inputs" type="text" name="name" onChange={this.handleChange} size="large" placeholder="Name" prefix={<SchoolIcon/>} required />
+                                <Input className="form-inputs mt-1 " type="text" name="name"  value={this.state.name} onChange={this.handleChange} size="large" placeholder="name" prefix={<SchoolIcon/>} required />
                                 <br/>
-                                <Input className="form-inputs" type="text" name="category" onChange={this.handleChange} size="large" placeholder="Category" prefix={<CategoryIcon />} required />
+                                <Input className="form-inputs" type="text" name="category"  value={this.state.category} onChange={this.handleChange} size="large" placeholder="category" prefix={<CategoryIcon />} required />
                                 <br/>
-                                <Input  className="form-inputs" type="text" name="level" onChange={this.handleChange} size="large" placeholder="Level" prefix={<SortIcon />} required />
+                                <Input  className="form-inputs" type="text" name="level" value={this.state.level} onChange={this.handleChange} size="large" placeholder="level" prefix={<SortIcon />} required />
                                 <br/>
-                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="Description" onChange={this.handleChange} size="large" placeholder="Description" required/>
+                                {/*<Input  className="form-inputs" type="text" name="description" value={this.state.description} onChange={this.handleChange} size="large" placeholder="description" prefix={<UserAddOutlined />} required />*/}
+                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="description" value={this.state.description} onChange={this.handleChange} size="large" placeholder="description" prefix={"|Description about the course|"} required />
+
                                 <Button
                                     variant="contained"
                                     style={{backgroundColor:"#01579b"}}
@@ -233,15 +240,16 @@ class StepForm extends Component {
 
                             {this.state.formActivePanel1 === 2 &&
                             (<div className="col-md-12">
-                                <Input className="form-inputs" type="text" name="duration" onChange={this.handleChange} size="large" placeholder="Duration" prefix={<ScheduleIcon/>} required />
+                                <Input className="form-inputs" type="text" name="duration" value={this.state.duration} onChange={this.handleChange} size="large" placeholder="duration" prefix={<ScheduleIcon/>} required />
                                 <br/>
-                                <Input className="form-inputs" type="text" name="cost" onChange={this.handleChange} size="large" placeholder="Cost" prefix={<MoneyIcon/>} required />
+                                <Input className="form-inputs" type="text" name="cost" value={this.state.cost} onChange={this.handleChange} size="large" placeholder="cost" prefix={<MoneyIcon/>} required />
                                 <br/>
-                                <Input className="form-inputs" type="text" name="payments" onChange={this.handleChange} size="large" placeholder="Payments" prefix={<CreditCardIcon/>} required />
+                                <Input className="form-inputs" type="text" name="payments" value={this.state.payments} onChange={this.handleChange} size="large" placeholder="payments" prefix={<CreditCardIcon/>} required />
                                 <br/>
-                                <Input  className="form-inputs" type="text" name="scholarships" onChange={this.handleChange} size="large" placeholder="Scholarships" prefix={<MoneyOffIcon/>} required />
-                                 <br/>
-                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="content" onChange={this.handleChange} size="large" placeholder="Content" prefix={<DetailsIcon/>} required />
+                                <Input  className="form-inputs" type="text" name="scholarships" value={this.state.scholarships} onChange={this.handleChange} size="large" placeholder="scholarships" prefix={<MoneyOffIcon/>} required />
+                                <br/>
+                                {/*<Input  className="form-inputs" type="text" name="content" value={this.state.content} onChange={this.handleChange} size="large" placeholder="content" prefix={<DetailsIcon/>} required />*/}
+                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="content" value={this.state.content} onChange={this.handleChange} size="large" placeholder="content" prefix={<DetailsIcon/>} required />
 
                                 <Button
                                     variant="contained"
@@ -263,15 +271,16 @@ class StepForm extends Component {
 
                             {this.state.formActivePanel1 === 3 &&
                             (<div className="col-md-12">
-                                <Input  className="form-inputs" type="text" name="enrollments" onChange={this.handleChange} size="large" placeholder="Enrollments" prefix={<AddToQueueIcon/>} required />
+                                <Input  className="form-inputs" type="text" name="enrollments" value={this.state.enrollments} onChange={this.handleChange} size="large" placeholder="enrollments" prefix={<AddToQueueIcon/>} required />
                                 <br/>
-                                <Input className="form-inputs" type="text" name="contacts" onChange={this.handleChange} size="large" placeholder="Contacts" prefix={<AddIcCallIcon/>} required />
+                                <Input className="form-inputs" type="text" name="contacts" value={this.state.contacts} onChange={this.handleChange} size="large" placeholder="contacts" prefix={<AddIcCallIcon/>} required />
                                 <br/>
-                                <Input className="form-inputs" type="text" name="further" onChange={this.handleChange} size="large" placeholder="Further" prefix={<MoreIcon/>}  />
+                                <Input className="form-inputs" type="text" name="further" value={this.state.further} onChange={this.handleChange} size="large" placeholder="further" prefix={<MoreIcon/>} />
+                                <br/>
+                                {/*<Input className="form-inputs"  type="text" name="career" value={this.state.career} onChange={this.handleChange} size="large" placeholder="career" prefix={<WorkIcon/>}  />*/}
+                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="career" value={this.state.career} onChange={this.handleChange} size="large" placeholder="career" prefix={<WorkIcon/>}  />
+                                <br/>
 
-                                <br/>
-                                <Input className="form-inputs" type="text" name="career" onChange={this.handleChange} size="large" placeholder="Career" prefix={<WorkIcon/>}  />
-                                <br/>
                                 <Button
                                     variant="contained"
                                     style={{backgroundColor:"#004940"}}
@@ -286,9 +295,9 @@ class StepForm extends Component {
                                     style={{backgroundColor:"#01579b"}}
                                     className="float-right text-white"
                                     onClick={this.handleNextPrevClick()()}
-                                    endIcon={<CheckCircleIcon/>}>
+                                    endIcon={<EditAttributesIcon/>}>
 
-                                    Add Course
+                                    Edit Course
                                 </Button>
                                 {/*<button className="login"  type="submit"><VerticalAlignTopOutlined />&nbsp;Add Course</button>*/}
                             </div>)}
@@ -300,4 +309,4 @@ class StepForm extends Component {
     }
 }
 
-export default StepForm;
+export default CourseEdit;

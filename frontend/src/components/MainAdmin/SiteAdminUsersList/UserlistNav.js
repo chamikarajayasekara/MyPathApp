@@ -7,15 +7,15 @@ class UserlistNav extends Component {
         return (
             <div>
                 <div className="row mt-lg-2" >
-                    <div className="col-md-3"></div>
+                    <div className="col-md-2"></div>
                     <div className="col-md-3">
                         <Link to="/addUsers" style={{textDecoration:"none"}}>
-                            <li className="sidebar-tabs content text-light">Add Users</li>
+                            <li className="sidebar-tabs-add content text-light">Add Users</li>
                         </Link>
                     </div>
                     <div className="col-md-3">
                         <Link to="/usersTable" style={{textDecoration:"none"}}>
-                            <li className="sidebar-tabs content text-light">Users Table</li>
+                            <li className="sidebar-tabs-add content text-light">Users Table</li>
                         </Link>
                     </div>
                 </div>
