@@ -7,21 +7,22 @@ import FontAwesome from "react-fontawesome";
 import { Card, Col, Row } from 'antd';
 import {Link} from "react-router-dom";
 import CourseAmountChart from "./CourseAmountChart";
+import CategoryAmountChart from "./CategoryAmountChart";
 class SiteAdminDashboard extends Component {
     state={
-        institutes:'',
+        categories:'',
         users:'',
         courses:''
     }
 
     componentDidMount() {
         const token =  localStorage.getItem('admin-token');
-        axios.get('http://localhost:5000/api/institute/details',{ headers: {"auth-token": token}})
+        axios.get('http://localhost:5000/api/category/details',{ headers: {"auth-token": token}})
             .then(res => {
             this.setState({
-                institutes: res.data.length,
+                categories: res.data.length,
             });
-            console.log(res.data.length)
+            // console.log(res.data.length)
             })
             .catch((error) => {
                 console.log(error);
@@ -31,7 +32,7 @@ class SiteAdminDashboard extends Component {
                 this.setState({
                     users:res.data.length,
                 })
-                console.log(res.data.length)
+                // console.log(res.data.length)
             })
 
         axios.get('http://localhost:5000/api/courses/details',{ headers: {"auth-token": token}})
@@ -39,7 +40,7 @@ class SiteAdminDashboard extends Component {
                 this.setState({
                     courses:res.data.length,
                 })
-                console.log(res.data.length)
+                // console.log(res.data.length)
             })
     }
 
@@ -52,7 +53,7 @@ class SiteAdminDashboard extends Component {
                            <div className="row text-center">
                                <div className="col-md-12">
                                    <FontAwesome
-                                       name="fas fa-university"
+                                       name="fas fa-list"
                                        size="2x"
                                        className="home-col-2-icon text-center"
                                    />
@@ -60,16 +61,16 @@ class SiteAdminDashboard extends Component {
                            </div>
                                <div className="row pt-2 text-center">
                                    <div className="col-md-12">
-                                       <span>{this.state.institutes}</span>
+                                       <span>{this.state.categories}</span>
                                    </div>
                                </div>
                                <div className="row pb-1 text-center">
                                    <div className="col-md-12">
-                                       <span>Institutes</span>
+                                       <span>Categories</span>
                                    </div>
                                </div>
                             <hr className="line"/>
-                            <span><Link to="/instituteTable" style={{textDecoration:"none"}}>More info&nbsp;&nbsp;
+                            <span><Link to="/AddCategory" style={{textDecoration:"none"}}>More info&nbsp;&nbsp;
                                 <FontAwesome
                                     name="fas fa-chevron-right"
                                     size="1x"
@@ -141,9 +142,16 @@ class SiteAdminDashboard extends Component {
                     </Col>
                 </Row>
                 <div className="row">
+                    <div className="col-md-1"></div>
+                    <div className="col-md-10">
+                        <CourseAmountChart/>
+                    </div>
+                    <div className="col-md-1"></div>
+                </div>
+                <div className="row mt-3">
                     <div className="col-md-2"></div>
                     <div className="col-md-8">
-                        <CourseAmountChart/>
+                        <CategoryAmountChart/>
                     </div>
                     <div className="col-md-2"></div>
                 </div>

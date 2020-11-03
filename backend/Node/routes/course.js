@@ -94,12 +94,52 @@ router.get("/details", verify ,(req,res)=>{
         }
     })
 });
+
+router.get("/cat",(req,res)=>{
+    Course.aggregate().group({ _id: '$institute', count: { $sum: 1 } })
+        .then(data =>{
+            if (!data){
+                res.status(404).send({ message: "Not found Tutorial with id " });
+            }else{
+               // console.log(data[0])
+                res.json(data);
+            }
+        })
+        .catch(err=>{
+            res
+                .status(500)
+                .send({ message: "Error retrieving Tutorial with id=" +err });
+        })
+
+
+});
+
+router.get("/category",(req,res)=>{
+    Course.aggregate().group({ _id: '$category', count: { $sum: 1 } })
+        .then(data =>{
+            if (!data){
+                res.status(404).send({ message: "Not found Tutorial with id " });
+            }else{
+                // console.log(data[0])
+                res.json(data);
+            }
+        })
+        .catch(err=>{
+            res
+                .status(500)
+                .send({ message: "Error retrieving Tutorial with id=" +err });
+        })
+
+
+});
 router.get("/list",(req,res)=>{
+
     Course.find((data,err)=>{
         if (err) {
             return res.json(err)
         }else {
             res.json(data)
+            console.log(data)
         }
     })
 });
@@ -114,15 +154,17 @@ router.get("/list/:id", async (req,res)=>{
 });
 router.post("/pass", async (req,res)=>{
     // res.send(req.query);
-    console.log(req.query)
+    // console.log(req.query)
     Course.find(req.query,(data,err)=>{
         if (err) {
             return res.json(err)
         }else {
             res.json(data)
+
         }
     })
 });
+
 
 router.post("/like", async (req,res)=>{
     req.query = 'Business'
@@ -131,7 +173,7 @@ router.post("/like", async (req,res)=>{
         if (err) {
             return res.json(err)
         }else {
-            res.json(data)
+            res.json(data);
         }
     })
 });

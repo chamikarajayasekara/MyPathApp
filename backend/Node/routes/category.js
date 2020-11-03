@@ -43,7 +43,7 @@ router.get('/list',(req,res)=>{
 })
 
 router.put("/update/:_id", verify, async (req, res, next) => {
-    User.findByIdAndUpdate(req.params._id, req.body, (err, user) => {
+    Category.findByIdAndUpdate(req.params._id, req.body, (err, user) => {
         if (err) {
             res.json({
                 success: false,
@@ -59,7 +59,7 @@ router.put("/update/:_id", verify, async (req, res, next) => {
 });
 
 router.delete("/delete/:_id", verify ,(req,res)=>{
-    User.findByIdAndRemove(req.params._id,(err)=>{
+    Category.findByIdAndRemove(req.params._id,(err)=>{
         if (err) {
             return res.status(404).send({
                 message: "user not found with id " + req.params._id
@@ -71,5 +71,6 @@ router.delete("/delete/:_id", verify ,(req,res)=>{
         }
     })
 });
+
 
 module.exports = router;

@@ -2,12 +2,16 @@ import React, {Component} from 'react';
 import {Card} from "antd";
 import UserDetails from "../../Login/profile/UserDetails/UserDetails";
 import {Link} from "react-router-dom";
-import PieChartOutlined from "@ant-design/icons/lib/icons/PieChartOutlined";
-import FormOutlined from "@ant-design/icons/lib/icons/FormOutlined";
-import EditOutlined from "@ant-design/icons/lib/icons/EditOutlined";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
-import LineChartOutlined from "@ant-design/icons/lib/icons/LineChartOutlined";
 import HomeOutlined from "@ant-design/icons/lib/icons/HomeOutlined";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import SchoolIcon from '@material-ui/icons/School';
+import CategoryIcon from '@material-ui/icons/Category';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import QueueIcon from '@material-ui/icons/Queue';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 class AdminSideBar extends Component {
     render() {
@@ -21,16 +25,24 @@ class AdminSideBar extends Component {
                         <div className="sidebar-tabs">
                             <div className="col-lg-10 content">
                                 <li className="nav-list">
-                                    <PieChartOutlined style={{fontSize: '16px'}}/>&nbsp;
+                                    <DashboardIcon style={{fontSize: '16px'}}/>&nbsp;
                                     Dashboard</li>
                             </div>
                         </div>
                     </Link>
-                    <Link to="/userList" style={{textDecoration:"none"}}>
+                    <Link to="/addUsers" style={{textDecoration:"none"}}>
                         <div className="sidebar-tabs">
                             <div className="col-lg-10 content">
                                 <li className="nav-list">
-                                    <FormOutlined style={{fontSize: '16px'}} />&nbsp;User List</li>
+                                    <PersonAddIcon style={{fontSize: '16px'}} />&nbsp;Add User</li>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/usersTable" style={{textDecoration:"none"}}>
+                        <div className="sidebar-tabs">
+                            <div className="col-lg-10 content">
+                                <li className="nav-list">
+                                    <PeopleAltIcon style={{fontSize: '16px'}} />&nbsp;Users Table</li>
                             </div>
                         </div>
                     </Link>
@@ -38,15 +50,31 @@ class AdminSideBar extends Component {
                         <div className="sidebar-tabs">
                             <div className="col-lg-10 content">
                                 <li className="nav-list">
-                                    <EditOutlined  style={{fontSize: '16px'}}/>&nbsp;&nbsp;Course Details</li>
+                                    <SchoolIcon   style={{fontSize: '16px'}}/>&nbsp;&nbsp;Course Details</li>
                             </div>
                         </div>
                     </Link>
-                    <Link to="/adminDetails" style={{textDecoration:"none"}}>
+                    <Link to="/AddCategory" style={{textDecoration:"none"}}>
                         <div className="sidebar-tabs">
                             <div className="col-lg-10 content">
                                 <li className="nav-list">
-                                    <UserOutlined />&nbsp;&nbsp;Admin Details</li>
+                                    <CategoryIcon  style={{fontSize: '16px'}}/>&nbsp;&nbsp;Add category</li>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/addAdmin" style={{textDecoration:"none"}}>
+                        <div className="sidebar-tabs">
+                            <div className="col-lg-10 content">
+                                <li className="nav-list">
+                                    <QueueIcon/>&nbsp;&nbsp;Add Admin</li>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/adminTable" style={{textDecoration:"none"}}>
+                        <div className="sidebar-tabs">
+                            <div className="col-lg-10 content">
+                                <li className="nav-list">
+                                    <SupervisorAccountIcon  />&nbsp;&nbsp;Admin Details</li>
                             </div>
                         </div>
                     </Link>
@@ -54,7 +82,7 @@ class AdminSideBar extends Component {
                         <div className="sidebar-tabs">
                             <div className="col-lg-10 content">
                                 <li className="nav-list">
-                                    <HomeOutlined />&nbsp;&nbsp;Institutes</li>
+                                    <AccountBalanceIcon/>&nbsp;&nbsp;Institutes</li>
                             </div>
                         </div>
                     </Link>

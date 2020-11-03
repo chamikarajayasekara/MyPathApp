@@ -8,10 +8,10 @@ class AdminNav extends Component {
     render() {
         return (
             <div className="row  bg-light">
-                <div className="col-md-4 mt-1 mb-1">
+                <div className="col-md-10 mt-1 mb-1">
                     <UserDetails/>
                 </div>
-                <div className="col-md-8 mt-1 mb-1"> <Logout/> </div>
+                <div className="col-md-2 mt-1 mb-1"> <Logout/> </div>
             </div>
         );
     }

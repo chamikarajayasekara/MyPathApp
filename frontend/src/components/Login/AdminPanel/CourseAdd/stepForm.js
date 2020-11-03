@@ -212,6 +212,7 @@ class StepForm extends Component {
                         <div className="row">
                             {this.state.formActivePanel1 === 1 &&
                             (<div className="col-md-12">
+
                                 <Input  className="form-inputs" type="text" name="institute_name" value={this.state.institute} size="large" placeholder="Institute" prefix={<AccountCircleIcon/>} required />
                                 <br/>
                                 <Input className="form-inputs" type="text" name="name" onChange={this.handleChange} size="large" placeholder="Name" prefix={<SchoolIcon/>} required />
@@ -220,7 +221,7 @@ class StepForm extends Component {
                                 <br/>
                                 <Input  className="form-inputs" type="text" name="level" onChange={this.handleChange} size="large" placeholder="Level" prefix={<SortIcon />} required />
                                 <br/>
-                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="Description" onChange={this.handleChange} size="large" placeholder="Description" required/>
+                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="description" onChange={this.handleChange} size="large" placeholder="Description" required/>
                                 <Button
                                     variant="contained"
                                     style={{backgroundColor:"#01579b"}}
@@ -268,9 +269,10 @@ class StepForm extends Component {
                                 <Input className="form-inputs" type="text" name="contacts" onChange={this.handleChange} size="large" placeholder="Contacts" prefix={<AddIcCallIcon/>} required />
                                 <br/>
                                 <Input className="form-inputs" type="text" name="further" onChange={this.handleChange} size="large" placeholder="Further" prefix={<MoreIcon/>}  />
-
                                 <br/>
-                                <Input className="form-inputs" type="text" name="career" onChange={this.handleChange} size="large" placeholder="Career" prefix={<WorkIcon/>}  />
+                                <TextArea rows={6}  allowClear className="form-inputs" type="text" name="career" onChange={this.handleChange} size="large" placeholder="Career" prefix={<WorkIcon/>} required />
+
+                                {/*<Input className="form-inputs" type="text" name="career" onChange={this.handleChange} size="large" placeholder="Career" prefix={<WorkIcon/>}  />*/}
                                 <br/>
                                 <Button
                                     variant="contained"

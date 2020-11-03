@@ -20,6 +20,7 @@ import DetailsOfCourse from "../courseList/DetailsOfCourse";
 import EditAdminList from "../AdminDetails/EditAdminList";
 import BackToTop from "../bavkToTop/BackToTop";
 import ScrollToTop from "../bavkToTop/ScrollToTop";
+import AddCategory from "../Category/addCategory";
 
 
 
@@ -59,7 +60,7 @@ class SiteAdminLandPage extends Component {
                                 <Route path="/adminTable" component={AdminTable}/>
                                 <Route path="/ListOfCourses" component={ListOfCourses}/>
                                 <Route path="/DetailsOfCourse/:id" component={DetailsOfCourse}/>
-
+                                <Route path="/AddCategory" component={AddCategory}/>
                                 {/*<Route path="/test/:id" component={EditBookComponent}/>*/}
                               <ScrollToTop/>
                             </div>

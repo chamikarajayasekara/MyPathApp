@@ -89,7 +89,7 @@ const CourseListtable = (props)=> {
     }, [user, currentPage, search, sorting]);
 
     const DeleteUser = (id) => {
-        const token =  localStorage.getItem('admin-token');
+        const token =  localStorage.getItem('cool-jwt');
         axios.delete('http://localhost:5000/api/courses/delete/'+id,{ headers: {"auth-token": token}})
             .then((result) => {
                 props.history.push('/CourseList')

@@ -30,7 +30,7 @@ class TestLift extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/api/courses/list')
             .then(res=>{
-                console.log(res.request.readyState)
+                // console.log(res.request.readyState)
                 this.setState({
                     courses:res.data,
                     readyState:true,
