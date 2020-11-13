@@ -4,7 +4,7 @@ class StateUniversity extends Component {
     render() {
         return (
             <div>
-                state university
+              
             </div>
         );
     }

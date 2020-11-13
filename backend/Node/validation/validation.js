@@ -155,6 +155,40 @@ const categoryValidation = data =>{
     });
     return schema.validate(data);
 }
+
+const subjectsValidation = data =>{
+    const schema = joi.object({
+        name: joi
+            .string()
+            .min(3)
+            .required(),
+        arts: joi
+            .string()
+            .min(2)
+            .required(),
+        commerce: joi
+            .string()
+            .min(2)
+            .required(),
+        bio: joi
+            .string()
+            .min(2)
+            .required(),
+        physical: joi
+            .string()
+            .min(2)
+            .required(),
+        etec: joi
+            .string()
+            .min(2)
+            .required(),
+        btec: joi
+            .string()
+            .min(2)
+            .required(),
+    });
+    return schema.validate(data);
+}
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.instituteValidation =instituteValidation;
@@ -162,3 +196,4 @@ module.exports.courseValidation =courseValidation;
 module.exports.adminValidation =adminValidation;
 module.exports.imageValidation = imageValidation;
 module.exports.categoryValidation = categoryValidation;
+module.exports.subjectsValidation = subjectsValidation;

@@ -15,6 +15,9 @@ import StateUniversity from "./components/StateUniversities/StateUniversity";
 import SiteAdminLogging from "./components/MainAdmin/SiteAdmin/SiteAdminLogging";
 import SiteAdminLandPage from "./components/MainAdmin/SiteAdminLandPage/SiteAdminLandPage";
 import courseDet from "./components/Courses/courseDet";
+import Alland from "./components/ALSubjects/Alland";
+import Arts from "./components/ALSubjects/Arts/Arts";
+import Commerce from "./components/ALSubjects/Commerce/Commerce";
 
 
 
@@ -43,10 +46,11 @@ class App extends Component{
                           <Route path="/StateUniversities" component={StateUniversity}/>
                           <Route path="/admin" component={SiteAdminLogging}/>
                           <Route path="/courseDet/:id" component={courseDet}/>
-
+                          <Route path="/Alsubjects" component={Alland}/>
                           <AuthComponent>
                               <Route path={'/profile'} component={Profile} />
                               <Route path={'/siteLanding'} component={SiteAdminLandPage}/>
+
                           </AuthComponent>
                       </Switch>
                   </div>

@@ -22,7 +22,7 @@ class CourseDet extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/api/courses/list/'+this.props.match.params.id)
+        axios.get('http://localhost:5000/api/subject/details'+this.props.match.params.id)
             .then(res=>{
                 console.log(res.data);
                 console.log(res)

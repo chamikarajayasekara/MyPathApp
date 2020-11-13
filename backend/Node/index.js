@@ -33,6 +33,7 @@ app.use('/api/courses/',require('./routes/course'));
 app.use('/api/admin/',require('./routes/admin'));
 app.use('/api/image/',require('./routes/image'));
 app.use('/api/category/',require('./routes/category'));
+app.use('/api/subject/',require('./routes/subject'));
 app.use(fileUpload());
 const port = process.env.PORT || 5000;
 const server = app.listen(port,()=>{
