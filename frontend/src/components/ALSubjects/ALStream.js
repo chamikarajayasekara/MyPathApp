@@ -3,6 +3,9 @@ import { Tabs } from 'antd';
 import Arts from "./Arts/Arts";
 import Commerce from "./Commerce/Commerce";
 import Bio from "./Bio/Bio";
+import Physical from "./Phys/physical";
+import Etec from "./E-tec/etec";
+import Btec from "./B-Tec/btec";
 
 function callback(key) {
     console.log(key);
@@ -25,13 +28,13 @@ class AlStream extends Component {
                         <Bio/>
                     </TabPane>
                     <TabPane tab="PHYSICAL SCIENCE" key="4">
-                        Content of Tab Pane 3
+                                <Physical />
                     </TabPane>
                     <TabPane tab="ENGINEERING TECHNOLOGY" key="5">
-                        Content of Tab Pane 3
+                        <Etec/>
                     </TabPane>
                     <TabPane tab="BIO SYSTEMS TECHNOLOGY" key="6">
-                        BIOSYSTEMS TECHNOLOGY
+                       <Btec/>
                     </TabPane>
                 </Tabs>
             </div>

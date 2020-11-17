@@ -32,7 +32,7 @@ class AddUsers extends Component {
             location:location,
         };
 
-        axios.post(`http://localhost:5000/api/auth/register`, user,{ headers: {"auth-token": token} })
+        axios.post('http://localhost:5000/api/auth/register', user,{ headers: {"auth-token": token} })
             .then(res => {
                 console.log(res)
                 console.log(res.data);

@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 class Commerce extends Component {
     state={
@@ -18,12 +21,17 @@ class Commerce extends Component {
     render() {
         return (
             <div>
-                {
-                    this.state.commerce.map(m =>
-                        <li>
-                            {m.name}
-                        </li>)
-                }
+                <div className="d-flex flex-wrap">
+                    { this.state.commerce.map(m =>
+                        <Card style={{width:300}} className="mr-2 bg-light">
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {m.name}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    )}
+                </div>
             </div>
         );
     }

@@ -22,7 +22,7 @@ class CourseDet extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/api/subject/details'+this.props.match.params.id)
+        axios.get('http://localhost:5000/api/courses/dets/'+this.props.match.params.id)
             .then(res=>{
                 console.log(res.data);
                 console.log(res)
@@ -41,7 +41,7 @@ class CourseDet extends Component {
                         <div className="col-md-1"></div>
                         <div className="col-md-9">
                             <Breadcrumbs aria-label="breadcrumb" className="ml-1 mt-2 text-white"><span><Link to="/courses" style={{textDecoration:"none",color:"white"}}> Courses</Link> > {this.state.result.name}</span></Breadcrumbs>
-                           <h2 className="text-left ml-1"> {this.state.result.name}</h2>
+                            <h2 className="text-left ml-1"> {this.state.result.name}</h2>
 
                         </div>
                         <div className="col-md-1 mt-lg-5"><img src="/images/logo.jpg" alt="" className="logopic"/></div>
@@ -70,10 +70,10 @@ class CourseDet extends Component {
                                     <div className="row">
                                         <div className="col-md-2 ">
                                             <FontAwesome
-                                            name="fas fa-graduation-cap"
-                                            size="2x"
-                                            className="home-col-2-icon mt-2"
-                                        />
+                                                name="fas fa-graduation-cap"
+                                                size="2x"
+                                                className="home-col-2-icon mt-2"
+                                            />
                                         </div>
                                         <div className="col-md-8">
                                             <div className="row">

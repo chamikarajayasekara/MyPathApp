@@ -120,15 +120,15 @@ const Categorytable =(props)=> {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {commentsData.map(admin => (
-                                    <TableRow key={admin._id}>
+                                {commentsData.map(category => (
+                                    <TableRow key={category._id}>
                                         <TableCell style={{ width: 400 }} align="left">
-                                            {admin.name}
+                                            {category.name}
                                         </TableCell>
                                         <TableCell style={{ width: 200 }}  align="center">
                                             <ThemeProvider theme={customTheme}>
-                                                <Button color="primary"><Link className="nav-link " to={"/editAdmin/"+admin._id}><EditIcon/></Link></Button>&nbsp;
-                                                <Button   onClick={() => {DeleteUser(admin._id)}}><DeleteIcon className="text-danger"/></Button>
+                                                <Button color="primary"><Link className="nav-link " to={"/EditCategory/"+category._id}><EditIcon/></Link></Button>&nbsp;
+                                                <Button   onClick={() => {DeleteUser(category._id)}}><DeleteIcon className="text-danger"/></Button>
                                             </ThemeProvider>
                                         </TableCell>
                                     </TableRow>

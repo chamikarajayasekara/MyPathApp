@@ -4,7 +4,8 @@
   "description": "MyPath Node backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,7 @@
     "moment": "^2.27.0",
     "mongoose": "^5.9.25",
     "multer": "^1.4.2",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7"

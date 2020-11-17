@@ -78,11 +78,11 @@ class AdminSideBar extends Component {
                             </div>
                         </div>
                     </Link>
-                    <Link to="/institutes" style={{textDecoration:"none"}}>
+                    <Link to="/subjects" style={{textDecoration:"none"}}>
                         <div className="sidebar-tabs">
                             <div className="col-lg-10 content">
                                 <li className="nav-list">
-                                    <AccountBalanceIcon/>&nbsp;&nbsp;Institutes</li>
+                                    <AccountBalanceIcon/>&nbsp;&nbsp;Subjects</li>
                             </div>
                         </div>
                     </Link>

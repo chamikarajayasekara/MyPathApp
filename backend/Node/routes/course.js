@@ -55,6 +55,17 @@ router.get("/details/:id", verify, async (req,res)=>{
     })
 });
 
+router.get("/dets/:id", async (req,res)=>{
+    Course.findById(req.params.id,(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+
+
 router.delete("/delete/:_id", verify ,(req,res)=>{
     Course.findByIdAndRemove(req.params._id,(err)=>{
         if (err) {

@@ -131,6 +131,7 @@ class TestLift extends Component {
                                                     <Checkbox key={cat._id} onChange={this.handleCheckBox} value={cat.name} />
                                                 }
                                                 label={cat.name}
+
                                             />)}
                                     </FormGroup>
                                 </FormControl>

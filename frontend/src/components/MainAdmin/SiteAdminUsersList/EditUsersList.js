@@ -51,6 +51,7 @@ function EditUsersList (props) {
         setUser({...user,[e.target.name]: e.target.value})
     }
 
+    console.log(props)
 
         return (
             <div>

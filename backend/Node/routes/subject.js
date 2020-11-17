@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const {subjectsValidation} = require("../validation/validation");
 const Subject = require("../model/subjects");
+const verify = require('./TokenVerification')
 
-router.post('/register', async (req, res) => {
+router.post('/register', verify, async (req, res) => {
     const {error} = subjectsValidation(req.body)
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -36,6 +37,15 @@ router.get("/arts",(req,res)=>{
         }
     })
 });
+router.get("/com",(req,res)=>{
+    Subject.find({commerce:"yes"},(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
 router.get("/bio",(req,res)=>{
     Subject.find({bio:"yes"},(data,err)=>{
         if (err) {
@@ -45,8 +55,26 @@ router.get("/bio",(req,res)=>{
         }
     })
 });
-router.get("/com",(req,res)=>{
-    Subject.find({commerce:"yes"},(data,err)=>{
+router.get("/physical",(req,res)=>{
+    Subject.find({physical:"yes"},(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+router.get("/etec",(req,res)=>{
+    Subject.find({etec:"yes"},(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+router.get("/btec",(req,res)=>{
+    Subject.find({btec:"yes"},(data,err)=>{
         if (err) {
             return res.json(err)
         }else {

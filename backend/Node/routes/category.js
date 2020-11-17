@@ -42,7 +42,26 @@ router.get('/list',(req,res)=>{
     }).sort({'name': 1})
 })
 
-router.put("/update/:_id", verify, async (req, res, next) => {
+// router.get('/det/:_id',(req,res)=>{
+//     Category.findOne((data,err)=>{
+//         if (err) {
+//             return res.json(err)
+//         }else {
+//             res.json(data)
+//         }
+//     }).sort({'name': 1})
+// })
+
+router.get("/details/:_id", verify, async (req,res)=>{
+    Category.findById(req.params._id,(data,err)=>{
+        if (err) {
+            return res.json(err)
+        }else {
+            res.json(data)
+        }
+    })
+});
+router.put("/update/:_id",verify, async (req, res, next) => {
     Category.findByIdAndUpdate(req.params._id, req.body, (err, user) => {
         if (err) {
             res.json({
@@ -57,6 +76,7 @@ router.put("/update/:_id", verify, async (req, res, next) => {
     });
 
 });
+
 
 router.delete("/delete/:_id", verify ,(req,res)=>{
     Category.findByIdAndRemove(req.params._id,(err)=>{

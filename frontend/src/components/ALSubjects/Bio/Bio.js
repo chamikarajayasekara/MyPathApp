@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 class Bio extends Component {
     state={
@@ -19,12 +22,17 @@ class Bio extends Component {
         const {bio} = this.state.bio;
         return (
             <div>
-                {
-                    this.state.bio.map(m =>
-                        <li>
-                            {m.name}
-                        </li>)
-                }
+                <div className="d-flex flex-wrap">
+                    { this.state.bio.map(m =>
+                        <Card style={{width:300}} className="mr-2 bg-light">
+                            <CardContent>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {m.name}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    )}
+                </div>
             </div>
         );
     }
