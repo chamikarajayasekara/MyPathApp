@@ -9,6 +9,9 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
+import { Input } from 'antd';
+
+const { TextArea } = Input;
 
 class DetailsOfCourse extends Component {
     constructor(props) {
@@ -171,7 +174,7 @@ class DetailsOfCourse extends Component {
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <Typography>
-                                                {this.state.result.content}
+                                                <TextArea autoSize={true} value={this.state.result.content}/>
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>

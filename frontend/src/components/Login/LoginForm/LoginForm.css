@@ -8,6 +8,11 @@
 .form-logo{
     width: 18vw;
 }
+.select-bar{
+    width: 57vw;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+}
 .login{
     background-color: #283e51;
     width: 10vw;

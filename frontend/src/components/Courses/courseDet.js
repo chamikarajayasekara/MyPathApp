@@ -10,6 +10,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from "@material-ui/core/Typography";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Paper from "@material-ui/core/Paper";
+import { Input } from 'antd';
+
+const { TextArea } = Input;
 
 
 class CourseDet extends Component {
@@ -33,10 +36,16 @@ class CourseDet extends Component {
     }
 
     render() {
+        console.log(this.state.result.content)
+        // let resultList = result.length > 0
+        //     && result.map((item, i) => {
+        //         return (
+        //             <li key={item._id} value={item.content}>{item.content}</li>
+        //         )
+        //     }, this);
         return (
             <div className="row description-page">
                 <div className="col-md-12 bg-light">
-
                     <div className="row row-1">
                         <div className="col-md-1"></div>
                         <div className="col-md-9">
@@ -47,10 +56,10 @@ class CourseDet extends Component {
                         <div className="col-md-1 mt-lg-5"><img src="/images/logo.jpg" alt="" className="logopic"/></div>
                     </div>
                     <div className="row row-2">
-                        <div className="col-md-8 ">
+                        <div className="col-md-8">
                             <div className="row">
-                                <div className="col-md-1"></div>
-                                <div className="col-md-10 mt-2   ">
+
+                                <div className="col-md-12 mt-2   ">
 
                                     <div className="description-col mt-lg-1 p-5 text-left">
                                         <h3>Description About Course</h3>
@@ -154,7 +163,7 @@ class CourseDet extends Component {
                         </div>
                     </div>
                     <div className="row mt-3 p-1">
-                        <div className="col-md-7 accordion-div">
+                        <div className="col-md-8 ">
                             <Paper elevation={3} >
                                 <div className="">
                                     <Accordion>
@@ -171,9 +180,7 @@ class CourseDet extends Component {
                                                 />&nbsp;&nbsp;Content   </Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography>
-                                                {this.state.result.content}
-                                            </Typography>
+                                            <TextArea autoSize={true} value={this.state.result.content}/>
                                         </AccordionDetails>
                                     </Accordion>
                                     <Accordion>
@@ -237,6 +244,8 @@ class CourseDet extends Component {
                             </Paper>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         );

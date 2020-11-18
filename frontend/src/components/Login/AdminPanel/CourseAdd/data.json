@@ -1,0 +1,21 @@
+{
+  "level": [
+    {
+      "name": "Degree"
+    },
+    {
+      "name": "Diploma"
+    },
+    {
+      "name": "Professional"
+    },
+    {
+      "name": "Certificate"
+    },
+    {
+      "name": "Full time training"
+    }
+  ]
+
+
+}

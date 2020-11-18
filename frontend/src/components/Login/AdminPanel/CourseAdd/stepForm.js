@@ -27,7 +27,18 @@ import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import AddIcCallIcon from '@material-ui/icons/AddIcCall';
 import MoreIcon from '@material-ui/icons/More';
 import WorkIcon from '@material-ui/icons/Work';
+import data from './data.json';
 
+import { Select } from 'antd';
+const { Option } = Select;
+
+let config = {
+    headers: {
+        'Content-Length': 0,
+        'Content-Type': 'text/plain'
+    },
+    responseType: 'text'
+};
 class StepForm extends Component {
     state={
         formActivePanel1: 1,
@@ -51,6 +62,7 @@ class StepForm extends Component {
         career:'',
         black:true,
         activeStep:0,
+        Category:[],
     }
     async componentDidMount() {
         const token =  localStorage.getItem('cool-jwt');
@@ -65,10 +77,20 @@ class StepForm extends Component {
                 const institute = (res.data[0].institute);
                 // const user_id = localStorage.getItem('user_id');
                 this.setState({ institute});
+
                 // console.log(user_id);
             }).catch(e=>{
             console.log(e)
         });
+
+        axios.get('http://localhost:5000/api/category/list',{ headers: {"auth-token": token} })
+            .then(res=>{
+                let Category = res.data;
+                this.setState({Category})
+            })
+            .catch(e=>{
+                console.log(e)
+            })
     }
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
@@ -124,7 +146,7 @@ class StepForm extends Component {
             career:career
         };
         console.log(user)
-        axios.post(`http://localhost:5000/api/courses/register`, user,{ headers: {"auth-token": token} })
+        axios.post(`http://localhost:5000/api/courses/register`, user,{ headers: {"auth-token": token}})
             .then(res => {
                 console.log(res)
                 console.log(res.data);
@@ -140,6 +162,17 @@ class StepForm extends Component {
                 });
                 console.log(error)
             });
+    }
+
+    onChange = event => {
+        let a = event;
+        this.setState({category:a})
+        console.log(a)
+    }
+    onChangeDegree = event => {
+        let a = event;
+        this.setState({level:a})
+        console.log(a)
     }
     render() {
         const { current } = this.state;
@@ -169,7 +202,24 @@ class StepForm extends Component {
             e= "#01579b"
         }
         console.log(color)
+
         console.log(activeStep)
+        const {Category} = this.state;
+        let CategoryList = Category.length > 0
+            && Category.map((item, i) => {
+                return (
+                <Option key={item._id} value={item.name}>{item.name}</Option>
+                )
+            }, this);
+
+        const level = data.level;
+        let levelList = level.length > 0
+            && level.map((item, i) => {
+                return (
+                    <Option key={item.name} value={item.name}>{item.name}</Option>
+                )
+            }, this);
+
         return (
             <div>
                 <MDBContainer>
@@ -217,10 +267,47 @@ class StepForm extends Component {
                                 <br/>
                                 <Input className="form-inputs" type="text" name="name" onChange={this.handleChange} size="large" placeholder="Name" prefix={<SchoolIcon/>} required />
                                 <br/>
-                                <Input className="form-inputs" type="text" name="category" onChange={this.handleChange} size="large" placeholder="Category" prefix={<CategoryIcon />} required />
+                                {/*<Input className="form-inputs" type="text" name="category" onChange={this.handleChange} size="large" placeholder="Category" prefix={<CategoryIcon />} required />*/}
+                                {/*<br/>*/}
+
+                                <Select
+                                    showSearch
+                                    size="large"
+                                    className="select-bar bg-danger form-inputs"
+                                    placeholder="Select a Category"
+                                    optionFilterProp="children"
+                                    type="text"
+                                    name="category"
+                                    prefix={<CategoryIcon />}
+                                    required
+                                    onChange={this.onChange}
+                                    filterOption={(input, option) =>
+                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                    }
+                                >
+                                    {CategoryList}
+                                </Select>
                                 <br/>
-                                <Input  className="form-inputs" type="text" name="level" onChange={this.handleChange} size="large" placeholder="Level" prefix={<SortIcon />} required />
+                                <Select
+                                    showSearch
+                                    size="large"
+                                    className="select-bar mt-3 bg-danger "
+                                    placeholder="Select a Level"
+                                    optionFilterProp="children"
+                                    type="text"
+                                    name="level"
+                                    prefix={<CategoryIcon />}
+                                    required
+                                    onChange={this.onChangeDegree}
+                                    filterOption={(input, option) =>
+                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                    }
+                                >
+                                    {levelList}
+                                </Select>
                                 <br/>
+                                {/*<Input  className="form-inputs" type="text" name="level" onChange={this.handleChange} size="large" placeholder="Level" prefix={<SortIcon />} required />*/}
+                                {/*<br/>*/}
                                 <TextArea rows={6}  allowClear className="form-inputs" type="text" name="description" onChange={this.handleChange} size="large" placeholder="Description" required/>
                                 <Button
                                     variant="contained"

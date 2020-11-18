@@ -29,14 +29,17 @@ h2{
 }
 .description-col{
     border: 1px solid #110f4e;
-    font-family: 'Varela Round', sans-serif;
+
 }
 p{
-    font-family: 'Varela Round', sans-serif;
+
 }
 .description-page{
     height:100vh;
 }
 .accordion-div{
     margin-left: 5px;
+}
+.accordion-div-main{
+    margin-left: 10px;
 }
